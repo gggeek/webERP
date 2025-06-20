@@ -1,12 +1,19 @@
-# Only config.distrib.php is to be distributed
-config.php
-
 # Ignore NetBeans project metadata
-nbproject/
+/nbproject/
+# As well as Jetbrains stuff
+/.idea/
+# And VSCode
+/.vscode/launch.json
+# And random assorted tooling files
+Thumbs.db
+
+# Only config.distrib.php is to be distributed
+/config.php
+# composer dependencies do not have to be distributed
+/composer.lock
+/vendor/
 
 # Ignore everything in the companies directory
 /companies/*
 # except for weberpdemo
 !/companies/weberpdemo
-.vscode/launch.json
-Thumbs.db
