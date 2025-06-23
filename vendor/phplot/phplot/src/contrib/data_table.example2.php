@@ -1,5 +1,5 @@
 <?php
-# $Id: data_table.example2.php 999 2011-08-05 19:00:48Z lbayuk $
+# $Id$
 # phplot / contrib / data_table example 2: Line plot with data table on the side
 require_once 'phplot.php';
 require_once 'data_table.php';
@@ -17,7 +17,7 @@ $settings = array(
     'font' => 3,
 );
 
-$plot = new PHPlot(800, 600);
+$plot = new phplot(800, 600);
 $plot->SetTitle('Line Plot with Data Table on Right Side');
 $plot->SetDataValues($data);
 $plot->SetDataType('data-data');

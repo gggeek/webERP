@@ -1,5 +1,5 @@
 <?php
-# $Id: data_table.example3.php 999 2011-08-05 19:00:48Z lbayuk $
+# $Id$
 # phplot / contrib / data_table example 3:  Pie chart with data table
 require_once 'phplot.php';
 require_once 'data_table.php';
@@ -20,7 +20,7 @@ $settings = array(
     'data' => $data,
 );
 
-$plot = new PHPlot(600, 400);
+$plot = new phplot(600, 400);
 $plot->SetTitle('Pie Chart with Legend and Data Table');
 $plot->SetDataValues($data);
 $plot->SetDataType('text-data-single');

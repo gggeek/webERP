@@ -38,7 +38,6 @@
  */
 
 include('includes/session.php');
-include('includes/phplot/phplot.php');
 $Title = _('GL Account Graph');
 $ViewTopic = 'GeneralLedger';
 $BookMark = 'GLAccountGraph';
@@ -96,7 +95,7 @@ if ((!isset($_POST['PeriodFrom']) or !isset($_POST['PeriodTo'])) or $NewReport =
 					AND glaccountusers.userid = '" . $_SESSION['UserID'] . "'
 					AND glaccountusers.canview = 1
 			ORDER BY chartmaster.accountcode";
-	$AccountResult = DB_query($SQL); 
+	$AccountResult = DB_query($SQL);
 	$BankAccount = false;
 	while ($MyRow = DB_fetch_array($AccountResult)) {
 		if ($MyRow['accountcode'] == $SelectedAccount) {
@@ -279,7 +278,7 @@ if ((!isset($_POST['PeriodFrom']) or !isset($_POST['PeriodTo'])) or $NewReport =
 		$LegendText = _('Actual');
 	}
 
-	$Graph = new PHPlot(1200, 600);
+	$Graph = new Phplot\Phplot\phplot(1200, 600);
 	$Graph->SetTitle($GraphTitle);
 	$Graph->SetTitleColor('blue');
 	$Graph->SetOutputFile('companies/' . $_SESSION['DatabaseName'] . '/reports/glaccountgraph.png');

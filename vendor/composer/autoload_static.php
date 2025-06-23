@@ -21,6 +21,7 @@ class ComposerStaticInitc0ac61ce55161fabab3d86f57aff7648
             'Psr\\SimpleCache\\' => 16,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
+            'Phplot\\Phplot\\' => 14,
             'PhpXmlRpc\\' => 10,
             'PhpOffice\\PhpSpreadsheet\\' => 25,
             'PHPMailer\\PHPMailer\\' => 20,
@@ -64,12 +65,16 @@ class ComposerStaticInitc0ac61ce55161fabab3d86f57aff7648
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-client/src',
+        ),
+        'Phplot\\Phplot\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phplot/phplot/src',
         ),
         'PhpXmlRpc\\' => 
         array (

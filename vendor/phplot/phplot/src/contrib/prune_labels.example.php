@@ -1,6 +1,6 @@
 <?php
 # PHPlot / contrib / prune_labels : Example
-# $Id: prune_labels.example.php 453 2009-12-09 03:45:53Z lbayuk $
+# $Id$
 # This produces 250 data points with date-formatted labels, and sets
 # a max of 20 labels to display.
 
@@ -16,7 +16,7 @@ for ($i = 0; $i < 250; $i++) {
 # Show no more than 20 labels:
 prune_labels($data, 20);
 
-$p = new PHPlot(800, 600);
+$p = new phplot(800, 600);
 $p->SetTitle('Example - pruned data labels');
 $p->SetDataType('data-data');
 $p->SetDataValues($data);

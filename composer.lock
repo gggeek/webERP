@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "251e14ea26166386cec6b6633d061480",
+    "content-hash": "98cca044364c981c30dede0d8eae32fd",
     "packages": [
         {
             "name": "composer/pcre",
@@ -490,6 +490,52 @@
                 "source": "https://github.com/Masterminds/html5-php/tree/2.9.0"
             },
             "time": "2024-03-31T07:05:07+00:00"
+        },
+        {
+            "name": "phplot/phplot",
+            "version": "v8.0.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPlot/phplot.git",
+                "reference": "e36d9513e1e0df5d75784e98e6ca4ae745ba27c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPlot/phplot/zipball/e36d9513e1e0df5d75784e98e6ca4ae745ba27c9",
+                "reference": "e36d9513e1e0df5d75784e98e6ca4ae745ba27c9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phplot\\Phplot\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "AJRepo",
+                    "email": "AJRepo@users.noreply.github.com"
+                }
+            ],
+            "description": "PHP graph library for dynamic scientific, business, and stock-market charts and graphs.",
+            "support": {
+                "issues": "https://github.com/PHPlot/phplot/issues",
+                "source": "https://github.com/PHPlot/phplot/tree/v8.0.0.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/ajrepo",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-08-21T14:54:51+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
