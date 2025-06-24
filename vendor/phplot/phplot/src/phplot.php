@@ -1908,7 +1908,7 @@ class phplot
             $y = $ypos - $r10 * $factor;
 
             // Call ImageString or ImageStringUp:
-            $draw_func($this->img, $font_number, $x, $y, $lines[$i], $color);
+            $draw_func($this->img, $font_number, (int)$x, (int)$y, $lines[$i], $color);
 
             // Step to the next line of text. This is a rotation of (x=0, y=interline_spacing)
             $xpos += $r01 * $interline_step;
@@ -7711,7 +7711,7 @@ class phplot
                 break;
             case 'none': /* Special case, no point shape here */
                 if ($allow_none) {
-                    break; // But fall throught to line if a shape is required
+                    break; // But fall through to line if a shape is required
                 }
                 //no break
             case 'line':
@@ -7733,23 +7733,23 @@ class phplot
                 break;
             case 'diamond':
                 $arrpoints = array($x1, $y, $x, $y1, $x2, $y, $x, $y2);
-                ImageFilledPolygon($this->img, $arrpoints, 4, $color);
+                ImageFilledPolygon($this->img, $arrpoints, $color);
                 break;
             case 'triangle':
                 $arrpoints = array($x1, $y, $x2, $y, $x, $y2);
-                ImageFilledPolygon($this->img, $arrpoints, 3, $color);
+                ImageFilledPolygon($this->img, $arrpoints,$color);
                 break;
             case 'trianglemid':
                 $arrpoints = array($x1, $y1, $x2, $y1, $x, $y);
-                ImageFilledPolygon($this->img, $arrpoints, 3, $color);
+                ImageFilledPolygon($this->img, $arrpoints, $color);
                 break;
             case 'yield':
                 $arrpoints = array($x1, $y1, $x2, $y1, $x, $y2);
-                ImageFilledPolygon($this->img, $arrpoints, 3, $color);
+                ImageFilledPolygon($this->img, $arrpoints, $color);
                 break;
             case 'delta':
                 $arrpoints = array($x1, $y2, $x2, $y2, $x, $y1);
-                ImageFilledPolygon($this->img, $arrpoints, 3, $color);
+                ImageFilledPolygon($this->img, $arrpoints, $color);
                 break;
             case 'star':
                 ImageLine($this->img, $x1, $y, $x2, $y, $color);
@@ -7759,11 +7759,11 @@ class phplot
                 break;
             case 'hourglass':
                 $arrpoints = array($x1, $y1, $x2, $y1, $x1, $y2, $x2, $y2);
-                ImageFilledPolygon($this->img, $arrpoints, 4, $color);
+                ImageFilledPolygon($this->img, $arrpoints, $color);
                 break;
             case 'bowtie':
                 $arrpoints = array($x1, $y1, $x1, $y2, $x2, $y1, $x2, $y2);
-                ImageFilledPolygon($this->img, $arrpoints, 4, $color);
+                ImageFilledPolygon($this->img, $arrpoints, $color);
                 break;
             case 'target':
                 ImageFilledRectangle($this->img, $x1, $y1, $x, $y, $color);
@@ -7775,7 +7775,7 @@ class phplot
                 break;
             case 'home': /* As in: "home plate" (baseball), also looks sort of like a house. */
                 $arrpoints = array($x1, $y2, $x2, $y2, $x2, $y, $x, $y1, $x1, $y);
-                ImageFilledPolygon($this->img, $arrpoints, 5, $color);
+                ImageFilledPolygon($this->img, $arrpoints, $color);
                 break;
             case 'up':
                 ImagePolygon($this->img, array($x, $y1, $x2, $y2, $x1, $y2), 3, $color);
@@ -7844,6 +7844,11 @@ class phplot
         $shade_top = true,
         $shade_side = true
     ) {
+        $x1 = (int)$x1;
+        $y1 = (int)$y1;
+        $x2 = (int)$x2;
+        $y2 = (int)$y2;
+
         // Sort the points so x1,y1 is upper left and x2,y2 is lower right. This
         // is needed in order to get the shading right, and imagerectangle may require it.
         if ($x1 > $x2) {
@@ -7871,7 +7876,7 @@ class phplot
             } else { // Suppress top shading (Note shade_top==FALSE && shade_side==FALSE is not allowed)
                 $pts = array($x2, $y2, $x2, $y1, $x2 + $shade, $y1 - $shade, $x2 + $shade, $y2 - $shade);
             }
-            ImageFilledPolygon($this->img, $pts, count($pts) / 2, $shade_color);
+            ImageFilledPolygon($this->img, $pts, $shade_color);
         }
 
         // Draw a border around the bar, if enabled.
@@ -8328,9 +8333,9 @@ class phplot
                     ImageFilledArc(
                         $this->img,
                         $xpos,
-                        $ypos + $h,
-                        $pie_width,
-                        $pie_height,
+                        (int)$ypos + $h,
+                        (int)$pie_width,
+                        (int)$pie_height,
                         $arc_end_angle,
                         $arc_start_angle,
                         $slicecol,
@@ -8628,7 +8633,7 @@ class phplot
                 array_push($pts, $xd[$row], $yd[$row][$col]);
             }
             // Draw it:
-            ImageFilledPolygon($this->img, $pts, $n_rows * 2, $this->ndx_data_colors[$prev_col]);
+            ImageFilledPolygon($this->img, $pts, $this->ndx_data_colors[$prev_col]);
 
             $prev_col = $col;
         }
@@ -8954,7 +8959,7 @@ class phplot
             }
 
             // Draw the resulting polygon, which has (2 * (1 + 2*(n_rows-1))) points:
-            ImageFilledPolygon($this->img, $pts, 4 * $n_rows - 2, $this->ndx_data_colors[$prev_col]);
+            ImageFilledPolygon($this->img, $pts, $this->ndx_data_colors[$prev_col]);
             $prev_col = $col;
         }
 

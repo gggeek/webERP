@@ -3,6 +3,7 @@
     "description": "PHP graph library for dynamic scientific, business, and stock-market charts and graphs.",
     "type": "library",
     "require": {
+        "php": ">=8.0",
         "ext-gd": "*"
     },
     "license": "LGPL-2.1-or-later",

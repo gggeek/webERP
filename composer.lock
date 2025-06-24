@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "98cca044364c981c30dede0d8eae32fd",
+    "content-hash": "ef54daeb986a9eeae6cf04de214c0c2e",
     "packages": [
         {
             "name": "composer/pcre",
@@ -493,20 +493,15 @@
         },
         {
             "name": "phplot/phplot",
-            "version": "v8.0.0.3",
+            "version": "dev-gg/weberp-fixes",
             "source": {
                 "type": "git",
-                "url": "https://github.com/PHPlot/phplot.git",
-                "reference": "e36d9513e1e0df5d75784e98e6ca4ae745ba27c9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PHPlot/phplot/zipball/e36d9513e1e0df5d75784e98e6ca4ae745ba27c9",
-                "reference": "e36d9513e1e0df5d75784e98e6ca4ae745ba27c9",
-                "shasum": ""
+                "url": "https://github.com/gggeek/phplot",
+                "reference": "0fa5631e31f20dde6fb9c17f985bba61791c9992"
             },
             "require": {
-                "ext-gd": "*"
+                "ext-gd": "*",
+                "php": ">=8.0"
             },
             "type": "library",
             "autoload": {
@@ -514,7 +509,6 @@
                     "Phplot\\Phplot\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "LGPL-2.1-or-later"
             ],
@@ -525,17 +519,7 @@
                 }
             ],
             "description": "PHP graph library for dynamic scientific, business, and stock-market charts and graphs.",
-            "support": {
-                "issues": "https://github.com/PHPlot/phplot/issues",
-                "source": "https://github.com/PHPlot/phplot/tree/v8.0.0.3"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/ajrepo",
-                    "type": "github"
-                }
-            ],
-            "time": "2023-08-21T14:54:51+00:00"
+            "time": "2025-06-24T12:51:40+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -1135,9 +1119,18 @@
         }
     ],
     "packages-dev": [],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "phplot/phplot",
+            "version": "dev-gg/weberp-fixes",
+            "alias": "8.0.0.3-patch1",
+            "alias_normalized": "8.0.0.3-patch1"
+        }
+    ],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "phplot/phplot": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
