@@ -80,6 +80,7 @@ echo '<div class="help-bubble" id="help-bubble">
 		<div class="help-content" id="help-content"></div>
 	</div>';
 
+/// @todo should we move this to session.php?
 if (isset($_GET['FontSize'])) {
 	$SQL = "UPDATE www_users
 				SET fontsize='" . $_GET['FontSize'] . "'
