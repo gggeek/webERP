@@ -200,8 +200,8 @@ if (isset($_GET['ListTests'])) {
 			break;
 		case 4; //range
 			$TypeDisp=_('Range');
-			$RangeMin='<input  class="' .$Class. '" type="text" name="AddRangeMin' .$x.'" />';
-			$RangeMax='<input  class="' .$Class. '" type="text" name="AddRangeMax' .$x.'" />';
+			$RangeMin='<input class="' .$Class. '" type="text" name="AddRangeMin' .$x.'" />';
+			$RangeMax='<input class="' .$Class. '" type="text" name="AddRangeMax' .$x.'" />';
 			break;
 	} //end switch
 		echo '<tr class="striped_row">
@@ -210,7 +210,7 @@ if (isset($_GET['ListTests'])) {
 				<td>', $MyRow['method'], '</td>
 				<td>', $MyRow['units'], '</td>
 				<td>', $MyRow['defaultvalue'], '</td>
-				<td><input  class="' .$Class. '" type="text" name="AddTargetValue' .$x.'" /></td>
+				<td><input class="' .$Class. '" type="text" name="AddTargetValue' .$x.'" /></td>
 				<td>', $RangeMin, '</td>
 				<td>', $RangeMax, '</td>
 			</tr>';

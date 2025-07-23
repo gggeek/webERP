@@ -344,7 +344,7 @@ if (isset($_POST['PrintPDF'])) {
 			<legend>', _('Report Criteria'), '</legend>
 		 <field>
 			<label for="Percent">' . _('Dispatch Percent') . ':</label>
-			<input type ="text" name="Percent" class="number" size="8" value="0" />
+			<input type="text" name="Percent" class="number" size="8" value="0" />
 		 </field>';
 	echo '<field>
 			  <label for="FromLocation">' . _('From Stock Location') . ':</label>

@@ -49,7 +49,7 @@ $LocStockResult = DB_query($SQL, $ErrMsg, $DbgMsg);
 echo '<table class="selection">
 	<thead>
 		<tr>
-		<th colspan="3">' . _('Stock Code') . ':<input  type="text" data-type="no-illegal-chars" title="'._('The stock id should not contains illegal characters and blank or percentage mark is not allowed').'" required="required" name="StockID" size="21" value="' . $StockID . '" maxlength="20" /><input type="submit" name="Show" value="' . _('Show Re-Order Levels') . '" /></th>
+		<th colspan="3">' . _('Stock Code') . ':<input type="text" data-type="no-illegal-chars" title="'._('The stock id should not contains illegal characters and blank or percentage mark is not allowed').'" required="required" name="StockID" size="21" value="' . $StockID . '" maxlength="20" /><input type="submit" name="Show" value="' . _('Show Re-Order Levels') . '" /></th>
 		</tr>
 		<tr>
 		<th colspan="3"><b>' . $StockID . ' - ' . $MyRow[0] . '</b>  (' . _('In Units of') . ' ' . $MyRow[1] . ')</th>

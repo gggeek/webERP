@@ -274,15 +274,15 @@ echo '<field>
 	</field>
 	<field>
 		<label for="PeriodNumber">' . _('Number of Periods') .':</label>
-		<input type ="text" class="number" name="PeriodNumber" size="4" value="1" />
+		<input type="text" class="number" name="PeriodNumber" size="4" value="1" />
 	</field>
 	<field>
 		<label for="ExcludeQuantity">' . _('Exclude Total Quantity Less Than') . ':</label>
-		<input type ="text" class="number" name="ExcludeQuantity" size="4" value="1" />
+		<input type="text" class="number" name="ExcludeQuantity" size="4" value="1" />
     </field>
 	<field>
 		<label for="ExcludeAmount">' . _('Exclude Total Dollars Less Than') . ':</label>
-		<input type ="text" class="number" name="ExcludeAmount" size="8" value="0" />
+		<input type="text" class="number" name="ExcludeAmount" size="8" value="0" />
 	</field>
 	<field>
 		<label for="Multiplier">' . _('Multiplier') .':</label>

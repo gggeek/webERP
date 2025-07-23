@@ -769,7 +769,7 @@ if (isset($Select)) { //Parent Stock Item selected so display BOM or edit Compon
 			</tr>
 			<tr>
 				<td>' . _('Effective To') . ' (' . $_SESSION['DefaultDateFormat'] . '):</td>
-				<td><input  ' . (in_array('EffectiveTo',$Errors) ?  'class="inputerror"' : '' ) . ' tabindex="6" name="EffectiveTo" type="date" size="11" maxlength="10" value="' . $_POST['EffectiveTo'] .'" /></td>
+				<td><input ' . (in_array('EffectiveTo',$Errors) ?  'class="inputerror"' : '' ) . ' tabindex="6" name="EffectiveTo" type="date" size="11" maxlength="10" value="' . $_POST['EffectiveTo'] .'" /></td>
 			</tr>';
 
 		if ($ParentMBflag=='M' OR $ParentMBflag=='G'){
