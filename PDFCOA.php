@@ -25,10 +25,10 @@ if (isset($_GET['QASampleID']))  {
 If ((!isset($SelectedCOA) || $SelectedCOA=='') AND (!isset($QASampleID) OR $QASampleID=='')){
 	$ViewTopic = 'QualityAssurance';
 	$BookMark = '';
-        $Title = _('Select Certificate of Analysis To Print');
-        include('includes/header.php');
-		echo '<p class="page_title_text"><img src="'.$RootPath.'/css/'.$Theme.'/images/printer.png" title="' . _('Print')  . '" alt="" />' . ' ' . $Title . '</p>';
-        echo '<form action="' . htmlspecialchars($_SERVER['PHP_SELF'],ENT_QUOTES,'UTF-8') .  '" method="post">
+	$Title = _('Select Certificate of Analysis To Print');
+	include('includes/header.php');
+	echo '<p class="page_title_text"><img src="'.$RootPath.'/css/'.$Theme.'/images/printer.png" title="' . _('Print')  . '" alt="" />' . ' ' . $Title . '</p>';
+	echo '<form action="' . htmlspecialchars($_SERVER['PHP_SELF'],ENT_QUOTES,'UTF-8') .  '" method="post">
 		<input type="hidden" name="FormID" value="' . $_SESSION['FormID'] . '" />
 		<fieldset>
 		<legend>', _('Report Criteria'), '</legend>
@@ -73,8 +73,8 @@ If ((!isset($SelectedCOA) || $SelectedCOA=='') AND (!isset($QASampleID) OR $QASa
 		<input type="submit" name="PickSpec" value="' . _('Submit') . '" />
 		</div>
 		</form>';
-    include('includes/footer.php');
-    exit();
+	include('includes/footer.php');
+	exit();
 }
 
 

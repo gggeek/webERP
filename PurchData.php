@@ -9,21 +9,21 @@ $BookMark = '';
 include ('includes/header.php');
 
 if (isset($_GET['SupplierID'])) {
-    $SupplierID = trim(mb_strtoupper($_GET['SupplierID']));
+	$SupplierID = trim(mb_strtoupper($_GET['SupplierID']));
 } elseif (isset($_POST['SupplierID'])) {
-    $SupplierID = trim(mb_strtoupper($_POST['SupplierID']));
+	$SupplierID = trim(mb_strtoupper($_POST['SupplierID']));
 }
 
 if (isset($_GET['StockID'])) {
-    $StockID = trim(mb_strtoupper($_GET['StockID']));
+	$StockID = trim(mb_strtoupper($_GET['StockID']));
 } elseif (isset($_POST['StockID'])) {
-    $StockID = trim(mb_strtoupper($_POST['StockID']));
+	$StockID = trim(mb_strtoupper($_POST['StockID']));
 }
 
 if (isset($_GET['Edit'])) {
-    $Edit = true;
+	$Edit = true;
 } elseif (isset($_POST['Edit'])) {
-    $Edit = true;
+	$Edit = true;
 } else {
 	$Edit = false;
 }
@@ -52,7 +52,7 @@ $NoPurchasingData=0;
 echo '<a href="' . $RootPath . '/SelectProduct.php" class="toplink">' . _('Back to Items') . '</a>';
 
 if (isset($_POST['SupplierDescription'])) {
-    $_POST['SupplierDescription'] = trim($_POST['SupplierDescription']);
+	$_POST['SupplierDescription'] = trim($_POST['SupplierDescription']);
 }
 
 if ((isset($_POST['AddRecord']) OR isset($_POST['UpdateRecord'])) AND isset($SupplierID)) { /*Validate Inputs */
@@ -84,13 +84,13 @@ if ((isset($_POST['AddRecord']) OR isset($_POST['UpdateRecord'])) AND isset($Sup
 		unset($_POST['ConversionFactor']);
 		prnMsg(_('The conversion factor entered was not numeric') . ' (' . _('a number is expected') . '). ' . _('The conversion factor is the number which the price must be divided by to get the unit price in our unit of measure') . '. <br />' . _('E.g.') . ' ' . _('The supplier sells an item by the tonne and we hold stock by the kg') . '. ' . _('The suppliers price must be divided by 1000 to get to our cost per kg') . '. ' . _('The conversion factor to enter is 1000') . '. <br /><br />' . _('No changes will be made to the database'), 'error');
 	}
-    if (!Is_Date($_POST['EffectiveFrom'])){
+	if (!Is_Date($_POST['EffectiveFrom'])){
 		$InputError =1;
 		unset($_POST['EffectiveFrom']);
 		prnMsg (_('The date this purchase price is to take effect from must be entered in the format') . ' ' . $_SESSION['DefaultDateFormat'],'error');
 	}
-    if ($InputError == 0 AND isset($_POST['AddRecord'])) {
-        $SQL = "INSERT INTO purchdata (supplierno,
+	if ($InputError == 0 AND isset($_POST['AddRecord'])) {
+		$SQL = "INSERT INTO purchdata (supplierno,
 										stockid,
 										price,
 										effectivefrom,
@@ -112,12 +112,12 @@ if ((isset($_POST['AddRecord']) OR isset($_POST['UpdateRecord'])) AND isset($Sup
 							'" . filter_number_format($_POST['LeadTime']) . "',
 							'" . filter_number_format($_POST['MinOrderQty']) . "',
 							'" . $_POST['Preferred'] . "')";
-        $ErrMsg = _('The supplier purchasing details could not be added to the database because');
-        $DbgMsg = _('The SQL that failed was');
+		$ErrMsg = _('The supplier purchasing details could not be added to the database because');
+	    $DbgMsg = _('The SQL that failed was');
         $AddResult = DB_query($SQL, $ErrMsg, $DbgMsg);
         prnMsg(_('This supplier purchasing data has been added to the database'), 'success');
-    }
-    if ($InputError == 0 AND isset($_POST['UpdateRecord'])) {
+	}
+	if ($InputError == 0 AND isset($_POST['UpdateRecord'])) {
         $SQL = "UPDATE purchdata SET price='" . filter_number_format($_POST['Price']) . "',
 										effectivefrom='" . FormatDateForSQL($_POST['EffectiveFrom']) . "',
 										suppliersuom='" . $_POST['SuppliersUOM'] . "',

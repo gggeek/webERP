@@ -39,7 +39,7 @@ $YPos -=$LineHeight;
 
 $YPos -=(2*$LineHeight);
 
-/*Draw a rectangle to put the headings in     */
+/*Draw a rectangle to put the headings in */
 
 $pdf->line($Left_Margin, $YPos+$LineHeight,$Page_Width-$Right_Margin, $YPos+$LineHeight);
 
@@ -114,7 +114,7 @@ $LeftOvers = $pdf->addTextWrap(150,$YPos,500,$FontSize, $Narrative);
 
 $YPos=$YPos-($LineHeight*8);
 
-$LeftOvers = $pdf->addTextWrap(50,$YPos,500,$FontSize,_('Signed On Behalf Of').' :     '.$_SESSION['CompanyRecord']['coyname']);
+$LeftOvers = $pdf->addTextWrap(50,$YPos,500,$FontSize,_('Signed On Behalf Of').' : '.$_SESSION['CompanyRecord']['coyname']);
 
 $YPos=$YPos-($LineHeight*10);
 

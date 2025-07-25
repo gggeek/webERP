@@ -41,7 +41,6 @@ $BaseURLl = "https://" . MAPS_HOST . "/maps/api/geocode/xml?address=";
 
 // Iterate through the customer branch rows, geocoding each address
 
-
 while ($Row = DB_fetch_array($Result)) {
   $geocode_pending = true;
 
@@ -52,7 +51,6 @@ while ($Row = DB_fetch_array($Result)) {
     $RequestURL = $BaseURLl . $Address . '&key=' . KEY . '&sensor=true';
 
     echo '<br \>', _('Customer Code'), ': ', $id;
-
 
     $xml = simplexml_load_string(utf8_encode(file_get_contents($RequestURL))) or die("url not loading");
 //    $xml = simplexml_load_file($RequestURL) or die("url not loading");
@@ -71,7 +69,7 @@ while ($Row = DB_fetch_array($Result)) {
       $Query = sprintf("UPDATE custbranch " .
              " SET lat = '%s', lng = '%s' " .
              " WHERE branchcode = '%s' " .
- 	     " AND debtorno = '%s' LIMIT 1;",
+          " AND debtorno = '%s' LIMIT 1;",
              ($lat),
              ($lng),
              ($id),
@@ -80,9 +78,9 @@ while ($Row = DB_fetch_array($Result)) {
       $Update_result = DB_query($Query);
 
       if ($Update_result==1) {
-      echo '<br />'. 'Address: ' . $Address . ' updated to geocode.';
-      echo '<br />'. 'Received status ' . $status . '<br />';
-	}
+        echo '<br />'. 'Address: ' . $Address . ' updated to geocode.';
+        echo '<br />'. 'Received status ' . $status . '<br />';
+      }
     } else {
       // failure to geocode
       $geocode_pending = false;
@@ -119,7 +117,6 @@ while ($Row2 = DB_fetch_array($Result2)) {
       $lat = $xml->result->geometry->location->lat;
       $lng = $xml->result->geometry->location->lng;
 
-
       $Query = sprintf("UPDATE suppliers " .
              " SET lat = '%s', lng = '%s' " .
              " WHERE supplierid = '%s' LIMIT 1;",
@@ -130,8 +127,8 @@ while ($Row2 = DB_fetch_array($Result2)) {
       $Update_result = DB_query($Query);
 
       if ($Update_result==1) {
-      echo '<br />' . 'Address: ' . $Address . ' updated to geocode.';
-      echo '<br />' . 'Received status ' . $status . '<br />';
+        echo '<br />' . 'Address: ' . $Address . ' updated to geocode.';
+        echo '<br />' . 'Received status ' . $status . '<br />';
       }
     } else {
       // failure to geocode

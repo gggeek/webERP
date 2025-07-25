@@ -122,7 +122,7 @@ if (isset($_POST['Search'])
 		$TabIndex=$j+4;
 		echo'<tr class="striped_row">
 				<td><input tabindex="' .$TabIndex . '" type="submit" name="StockID" value="', $MyRow['stockid'], '" /></td>
-		        <td>', $MyRow['description'], '</td>
+				<td>', $MyRow['description'], '</td>
 				<td class="number">', $StockOnHand, '</td>
 				<td>', $MyRow['units'], '</td>
 			</tr>';
@@ -134,7 +134,7 @@ if (isset($_POST['Search'])
 	echo '</table>';
 }
 if (!isset($_POST['StockID'])) {
-    echo '</form>';
+	echo '</form>';
 }
 
 if (isset($StockID) and $StockID!=""){

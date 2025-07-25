@@ -78,9 +78,9 @@ $ResultStkLocs = DB_query($SQL);
 while ($MyRow=DB_fetch_array($ResultStkLocs)){
 	if (isset($_POST['StockLocation'])){
 		if ($MyRow['loccode'] == $_POST['StockLocation']){
-		     echo '<option selected="selected" value="' . $MyRow['loccode'] . '">' . $MyRow['locationname'] . '</option>';
+			echo '<option selected="selected" value="' . $MyRow['loccode'] . '">' . $MyRow['locationname'] . '</option>';
 		} else {
-		     echo '<option value="' . $MyRow['loccode'] . '">' . $MyRow['locationname'] . '</option>';
+			echo '<option value="' . $MyRow['loccode'] . '">' . $MyRow['locationname'] . '</option>';
 		}
 	} elseif ($MyRow['loccode']==$_SESSION['UserStockLocation']){
 		 echo '<option selected="selected" value="' . $MyRow['loccode'] . '">' . $MyRow['locationname'] . '</option>';

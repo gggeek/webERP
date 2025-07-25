@@ -35,7 +35,7 @@ if (isset($_POST['Submit'])) {
 		DB_Txn_Begin();
 
 		if($NewOrExisting == 'N') {
-	      /* duplicate rows into stockmaster */
+			/* duplicate rows into stockmaster */
 			$SQL = "INSERT INTO stockmaster( stockid,
 									categoryid,
 									description,

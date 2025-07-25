@@ -199,7 +199,8 @@ if (isset($_POST['PrintPDF'])){
     header("Content-disposition: attachment; filename=InventoryValuation_Categories_" .  $_POST['FromCriteria']  . '-' .  $_POST['ToCriteria']  .'.csv');
     header("Pragma: public");
     header("Expires: 0");
-    echo "\xEF\xBB\xBF"; // UTF-8 BOM
+	// the BOM is not used much any more in 2025...
+    //echo "\xEF\xBB\xBF"; // UTF-8 BOM
 	echo $CSVListing;
 	exit();
 

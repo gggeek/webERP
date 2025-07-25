@@ -152,9 +152,9 @@ if (isset($_POST['View'])) {
 	}
 
 	if (mb_strlen($ContainingText) > 0) {
-	    $ContainingText = " AND querystring LIKE '%" . $ContainingText . "%' ";
+		$ContainingText = " AND querystring LIKE '%" . $ContainingText . "%' ";
 	}else{
-	    $ContainingText = "";
+		$ContainingText = "";
 	}
 
 	if ($_POST['SelectedUser'] == 'ALL') {

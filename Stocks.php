@@ -1377,7 +1377,7 @@ $PropertyWidth = array();
 
 if (DB_num_rows($PropertiesResult) > 0) {
 	echo '<br />
-    <table class="selection">';
+	<table class="selection">';
 	echo '<tr>
 			<th colspan="2">' . _('Item Category Properties') . '</th>
 		</tr>';

@@ -243,8 +243,8 @@ if (isset($_POST['PrintPDF']) or isset($_POST['View'])) {
 			echo '<option value="' . $MyRow1['categoryid'] . '">' . $MyRow1['categorydescription'] . '</option>';
 		}
 	}
-    echo '</select>
-        </field>';
+	echo '</select>
+		</field>';
 
 	//view order by list to display
 	echo '<field>

@@ -36,9 +36,12 @@ if ($fp==FALSE){
 	exit();
 }
 
+// the BOM is not used much any more in 2025...
+//fputs($fp, "\xEF\xBB\xBF");
+
 While ($MyRow = DB_fetch_row($Result)){
 	$Line = stripcomma($MyRow[0]) . ', ' . stripcomma($MyRow[1]);
-	fputs($fp,"\xEF\xBB\xBF" . $Line . "\n");
+	fputs($fp, $Line . "\n");
 }
 
 fclose($fp);

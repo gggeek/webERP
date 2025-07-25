@@ -86,7 +86,7 @@ function search(&$StockID) { //####SEARCH_SEARCH_SEARCH_SEARCH_SEARCH_SEARCH_SEA
 	// If the SELECT found records, display them
 	if (DB_num_rows($Result) > 0) {
 		echo '<form action="' . htmlspecialchars($_SERVER['PHP_SELF'],ENT_QUOTES,'UTF-8') . '" method="post">';
-        echo '<div>';
+		echo '<div>';
 		echo '<input type="hidden" name="FormID" value="' . $_SESSION['FormID'] . '" />';
 		echo '<table cellpadding="2" class="selection">';
 		$TableHeader = '<tr><th>' . _('Code') . '</th>
@@ -106,7 +106,7 @@ function search(&$StockID) { //####SEARCH_SEARCH_SEARCH_SEARCH_SEARCH_SEARCH_SEA
 	}  //end of while loop
 
 	echo '</table>';
-    echo '</div>';
+	echo '</div>';
 	echo '</form>';
 
 } else {
@@ -260,7 +260,7 @@ function listall($Part,$DemandType)  {//####LISTALL_LISTALL_LISTALL_LISTALL_LIST
 // demandtype
 
 	echo '<form action="' . htmlspecialchars($_SERVER['PHP_SELF'],ENT_QUOTES,'UTF-8')  .'" method="post">';
-    echo '<div>';
+	echo '<div>';
 	echo '<input type="hidden" name="FormID" value="' . $_SESSION['FormID'] . '" />';
 	$Where = " ";
 	if ($DemandType) {
@@ -310,7 +310,7 @@ function listall($Part,$DemandType)  {//####LISTALL_LISTALL_LISTALL_LISTALL_LIST
 	echo '<tr><td>' . _('Number of Records') . '</td>
 				<td>' . $ctr . '</td></tr>';
 	echo '</table>';
-    echo '</div>';
+	echo '</div>';
 	echo '</form><br/><br/><br/><br/>';
 	unset ($StockID);
 	display($StockID,$DemandID);

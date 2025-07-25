@@ -146,9 +146,7 @@ if (isset($_POST['Delete'])) {
 	unset($FactorID);
 }
 
-
 /* So the page hasn't called itself with the input/update/delete/buttons */
-
 
 if (isset($FactorID) and isset($_POST['Amend'])) {
 
@@ -202,7 +200,7 @@ if (isset($_POST['Amend']) or isset($_POST['Create'])) {
 	echo '<form method="post" action="' . htmlspecialchars($_SERVER['PHP_SELF'],ENT_QUOTES,'UTF-8') . '">';
 	echo '<input type="hidden" name="FormID" value="' . $_SESSION['FormID'] . '" />';
 	echo '<input type="hidden" name="FactorID" value="' . $FactorID .'" />
-        <input type="hidden" name="New" value="Yes" />';
+		<input type="hidden" name="New" value="Yes" />';
 
 	if (isset($_POST['Amend'])) {
 		echo '<fieldset>
@@ -259,23 +257,22 @@ if (isset($_POST['Amend']) or isset($_POST['Create'])) {
 		</fieldset>';
 }
 
-
 if (isset($_POST['Create'])) {
 	echo '<div class="centre">
 			<input tabindex="12" type="submit" name="Submit" value="' . _('Insert New Factor') . '" />
-        </div>
+		</div>
 		</form>';
 } else if (isset($_POST['Amend'])) {
 	echo '<br />
 		<div class="centre">
 			<input tabindex="13" type="submit" name="Update" value="' . _('Update Factor') . '" />
 			<br />
-            <br />';
+			<br />';
 			prnMsg ( _('There is no second warning if you hit the delete button below') . '. ' . _('However checks will be made to ensure there are no suppliers are using this factor before the deletion is processed'), 'warn');
 			echo '<br />
 				<input tabindex="14" type="submit" name="Delete" value="' . _('Delete Factor') . '" onclick="return confirm(\'' . _('Are you sure you wish to delete this factoring company?') . '\');" />
 		</div>
-        </div>
+		</div>
 		</form>';
 }
 
@@ -285,7 +282,7 @@ if (isset($_POST['Create'])) {
 if (empty($FactorID) AND !isset($_POST['Create']) AND !isset($_POST['Amend'])) {
 
 	echo '<form method="post" action="' . htmlspecialchars($_SERVER['PHP_SELF'],ENT_QUOTES,'UTF-8') . '">';
-    echo '<div>';
+	echo '<div>';
 	echo '<input type="hidden" name="FormID" value="' . $_SESSION['FormID'] . '" />';
 
 	echo '<input type="hidden" name="New" value="No" />';
@@ -342,7 +339,7 @@ if (empty($FactorID) AND !isset($_POST['Create']) AND !isset($_POST['Amend'])) {
 			<br />
 			<input tabindex="3" type="submit" name="Create" value="' . _('Create New Factor') . '" />
 		</div>
-        </div>
+		</div>
 		</form>';
 }
 

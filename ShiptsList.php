@@ -28,9 +28,9 @@ $ErrMsg = _('No shipments were returned from the database because'). ' - '. DB_e
 $ShiptsResult = DB_query($SQL, $ErrMsg);
 
 if (DB_num_rows($ShiptsResult)==0){
-       prnMsg(_('There are no open shipments currently set up for').' ' . $_GET['SupplierName'],'warn');
+	prnMsg(_('There are no open shipments currently set up for').' ' . $_GET['SupplierName'],'warn');
 	include('includes/footer.php');
-       exit();
+	exit();
 }
 /*show a table of the shipments returned by the SQL */
 
@@ -44,10 +44,10 @@ $j = 1;
 
 while ($MyRow=DB_fetch_array($ShiptsResult)) {
 
-       echo '<tr class="striped_row">
+		echo '<tr class="striped_row">
 			<td><a href="'.$RootPath.'/Shipments.php?SelectedShipment='.$MyRow['shiptref'].'">' . $MyRow['shiptref'] . '</a></td>
-       		<td>' . $MyRow['vessel'] . '</td>
-		<td>' . ConvertSQLDate($MyRow['eta']) . '</td>
+			<td>' . $MyRow['vessel'] . '</td>
+			<td>' . ConvertSQLDate($MyRow['eta']) . '</td>
 		</tr>';
 
 }
