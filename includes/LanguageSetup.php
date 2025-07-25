@@ -1,5 +1,7 @@
 <?php
 
+use PGetText\T;
+
 /* Set internal character encoding to UTF-8 */
 mb_internal_encoding('UTF-8');
 
@@ -97,14 +99,24 @@ if (!function_exists('gettext')) {
 	}
 
 	// possibly even if setlocale fails the language will still switch by using env vars...
-	/// @todo make this work better with polyfill gettext: besides the putenv call, if setlocale failed call PGettext\T::setlocale
+	/// @todo make this work better with polyfill gettext: besides the putenv call, if setlocale failed call T::setlocale (or just call T::setlocale in the first place)
 	putenv('LANG=' . $_SESSION['Language']);
 	putenv('LANGUAGE=' . $_SESSION['Language']);
 
-	bindtextdomain ('messages', $PathPrefix . 'locale');
-	textdomain ('messages');
-	bind_textdomain_codeset('messages', 'UTF-8');
+	T::bindtextdomain('messages', $PathPrefix . 'locale');
+	T::textdomain('messages');
+	T::bind_textdomain_codeset('messages', 'UTF-8');
 /*}*/
 
+if (!function_exists('__')) {
+	/**
+	 * We define (yet another) shortcut for T:__gettext, to avoid having to add a `use PGettext/T` line to every file with translations
+	 * @param string $message
+	 * @return string
+	 */
+	function __($message) {
+		return T::gettext($message);
+	}
+}
 $DecimalPoint = $LanguagesArray[$_SESSION['Language']]['DecimalPoint'];
 $ThousandsSeparator = $LanguagesArray[$_SESSION['Language']]['ThousandsSeparator'];
