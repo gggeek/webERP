@@ -6,6 +6,7 @@ include('api/api_errorcodes.php');
 
 $Title = 'API documentation';
 
+/// @todo move to html5; add same meta tags as the website pages, such as eg. Author
 echo '<html xmlns="http://www.w3.org/1999/xhtml"><head><title>' . $Title . '</title>';
 echo '<link REL="shortcut icon" HREF="'. $RootPath.'/favicon.ico">';
 echo '<link REL="icon" HREF="' . $RootPath.'/favicon.ico">';

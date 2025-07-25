@@ -1,16 +1,18 @@
 <?php
+
 $PageSecurity = 15;
 
 $Title = _('Database Upgrade');
 
+/// @todo move this echoing to after the inclusion of session.php, so that we have $RootPath available for the links
 echo '<!DOCTYPE html>';
 echo '<html>
 		<head>
 			<title>', $Title, '</title>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
-			<script async type="text/javascript" src = "javascripts/DBUpgrade.js"></script>';
+			<link rel="icon" href="favicon.ico" />
+			<script async type="text/javascript" src="javascripts/DBUpgrade.js"></script>';
 
 echo '<title>', $Title, '</title>';
 echo '<link rel="stylesheet" href="css/dbupgrade.css" type="text/css" />';

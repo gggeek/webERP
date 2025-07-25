@@ -1,5 +1,6 @@
 <?php
 
+/// @todo should we include these two here? This file is included from session.php, which already includes them...
 include ($PathPrefix . 'includes/LanguageSetup.php');
 include ('LanguagesArray.php');
 
@@ -11,13 +12,14 @@ if ((isset($AllowDemoMode)) and ($AllowDemoMode == True) and (!isset($DemoText))
 }
 
 echo '<!DOCTYPE html>';
-echo '<html>
+/// @todo handle better the case where $Language is not in xx-YY format (full spec is at https://www.rfc-editor.org/rfc/rfc5646.html)
+echo '<html lang="' , str_replace('_', '-', substr($Language, 0, 5)) , '>
 	<head>
 		<title>WebERP ', _('Login screen'), '</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon" />
-		<script async type="text/javascript" src = "', $RootPath, '/javascripts/Login.js"></script>';
+		<link rel="icon" href="', $RootPath, '/favicon.ico"/>
+		<script async type="text/javascript" src="', $RootPath, '/javascripts/Login.js"></script>';
 
 if ($LanguagesArray[$DefaultLanguage]['Direction'] == 'rtl') {
 	echo '<link rel="stylesheet" href="css/login_rtl.css" type="text/css" />';

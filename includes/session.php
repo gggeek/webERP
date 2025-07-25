@@ -1,4 +1,5 @@
 <?php
+
 /* webERP Session handling
  * This file is included at the start of every script in webERP
  * It sets up the session and includes the necessary files for:
@@ -99,7 +100,6 @@ if (isset($_SESSION['DatabaseName'])) {
 
 include ($PathPrefix . 'includes/LanguageSetup.php');
 $FirstLogin = False;
-
 
 if (basename($_SERVER['SCRIPT_NAME']) == 'Logout.php') {
 	if (isset($_SESSION['Favourites'])) {
@@ -203,11 +203,13 @@ if (basename($_SERVER['SCRIPT_NAME']) == 'Logout.php') {
 
 		case UL_NOTVALID:
 			$DemoText = '<font size="3" color="red"><b>' . _('incorrect password') . '</b></font><br /><b>' . _('The user/password combination') . '<br />' . _('is not a valid user of the system') . '</b>';
-			die(include ($PathPrefix . 'includes/Login.php'));
+			include ($PathPrefix . 'includes/Login.php');
+			exit();
 
 		case UL_MAINTENANCE:
 			$DemoText = '<font size="3" color="red"><b>' . _('system maintenance') . '</b></font><br /><b>' . _('webERP is not available right now') . '<br />' . _('during maintenance of the system') . '</b>';
-			die(include ($PathPrefix . 'includes/Login.php'));
+			include ($PathPrefix . 'includes/Login.php');
+			exit();
 
 	}
 }

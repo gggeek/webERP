@@ -38,7 +38,7 @@ If (!isset($_GET['TransNo']) OR $_GET['TransNo']==''){
 
 $MailTo = $_GET['EMail'];
 $Headers = 'From: weberp.org <info@weberp.org>' . '\n';
-$Headers  .=  'MIME-Version: 1.0\n' . 'Content-Type: text/html; charset="utf-8"\n';
+$Headers .= 'MIME-Version: 1.0\n' . 'Content-Type: text/html; charset="utf-8"\n';
 
 /*retrieve the order details from the database to print */
 $ErrMsg = _('There was a problem retrieving the order header details for Order Number') . ' ' . $_GET['TransNo'] . ' ' . _('from the database');
@@ -146,7 +146,8 @@ if (DB_num_rows($Result)==0){
 	$MailSubject = _('Order Confirmation-Sales Order') . ' ' .  $_GET['TransNo'] . ' - '. _('Your PO') . ' ' . $MyRow['customerref'] ;
 }
 
-$MailMessage =  '<html>
+/// @todo handle better the case where $Language is not in xx-YY format (full spec is at https://www.rfc-editor.org/rfc/rfc5646.html)
+$MailMessage =  '<html lang="' . str_replace('_', '-', substr($Language, 0, 5)) . '>
 				<head>
 					<title>' . _('Email Confirmation') . '</title>
 				</head>
@@ -278,7 +279,6 @@ if($_GET['POLine'] == 1){
 if($Result){
 	echo ' ' ._('The following E-Mail was sent to') . ' ' . $MailTo . ' :';
 }
-
 
 echo '<html>
 	<head>
