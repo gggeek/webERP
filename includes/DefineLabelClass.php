@@ -1,9 +1,10 @@
 <?php
+
 define('MAX_LINES_PER_LABEL', 5);
 define('LABELS_FILE', $_SESSION['reports_dir'] . '/labels.xml');
 
 /**
- *  These tags contains the more general data of the labels
+ *  These tags contain the more general data of the labels
  */
 $GlobalTags = array('id'=>array('desc'=> _('Label id'),
 							'type'=>'t',
@@ -114,10 +115,9 @@ function emptyList() {
  *  - dimensions: physical specification of the label
  *  - data
  *
- *  The last one is an ocurrence of an array with 5 elements maximum, describing
+ *  The last one is an occurrence of an array with 5 elements maximum, describing
  *  the field characteristic to be included in the printed label
  */
-
 class LabelList extends SimpleXMLElement {
     function getLabel($labelID) {
         foreach ($this->label as $label) {
@@ -143,7 +143,7 @@ class LabelList extends SimpleXMLElement {
         $dimensions=$New->addChild('dimensions');
         foreach ($DimensionTags as $iTag=>$Tag)
             $dimensions->addChild($iTag, (string)$label->dimensions->$iTag);
-    // $data[$Tag][$i] begining with $data['row'][$i]
+        // $data[$Tag][$i] begining with $data['row'][$i]
         $data=$New->addChild('data');
         foreach ($label->data->line as $Line) {
             $NewLine=$data->addChild('line');

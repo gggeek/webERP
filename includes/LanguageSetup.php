@@ -25,13 +25,7 @@ $Language = $_SESSION['Language'];
 
 // Check users' locale format via their language
 // Then pass this information to the js for number validation purpose (see function `rLocaleNumber`)
-/**
- * @todo check: is the 'Lang' value still echoed anywhere in the html, so that it can be used by js, or can we just
- * drop this block?
- * It was initially written out as `<input type="hidden" name="Lang" id="Lang" value="', $Lang, '" />` just after the
- * body tag, in header.php. That was removed in commit 6503aa687b7625d87188ddbe3705820c3e5bd614, possibly by mistake...
- * Is it maybe now used as part of session data?
- */
+/// @todo move this logic to JS, into the rLocaleNumber
 foreach (array(
 	'US' => array('en_US.utf8','en_GB.utf8','ja_JP.utf8','hi_IN.utf8','mr_IN.utf8','sw_KE.utf8','tr_TR.utf8','vi_VN.utf8','zh_CN.utf8','zh_HK.utf8','zh_TW.utf8'),
 	'IN' => array('en_IN.utf8','hi_IN.utf8','mr_IN.utf8'),
