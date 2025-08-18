@@ -62,16 +62,6 @@ echo '</select>
 					<fieldhelp>' . __('The port to use to connect to the databse.') . '</fieldhelp>
 				</field>
 				<field>
-					<label for="Database">' . __('Database Name') . ': </label>
-					<input type="text" name="Database" id="Database" required="required" value="' . $_SESSION['Installer']['Database'] . '" maxlength="32" placeholder="' . __('The database name') . '" />
-					<fieldhelp>' . __('If your user name below does not have permissions to create a database then this database must be created and empty.') . '</fieldhelp>
-				</field>
-				<field>
-					<label for="Prefix">' . __('Database Prefix') . ' - ' . __('Optional') . ': </label>
-					<input type="text" name="Prefix" size="25" placeholder="' . __('Useful with shared hosting') . '" pattern="^[A-Za-z0-9$]+_$" />&#160;
-					<fieldhelp>' . __('Optional: in the form of prefix_') . '</fieldhelp>
-				</field>
-				<field>
 					<label for="UserName">' . __('Database User Name') . ':</label>
 					<input type="text" name="UserName" id="UserName" value="' . $_SESSION['Installer']['UserName'] . '" placeholder="' . __('A valid database user name') . '" maxlength="32" required="required" />&#160;
 					<fieldhelp>' . __('If this user does not have permission to create databases, then the database entered above must exist and be empty.') . '</fieldhelp>
@@ -80,6 +70,16 @@ echo '</select>
 					<label for="Password">' . __('Password') . ': </label>
 					<input type="password" name="Password" placeholder="' . __('Database user password') . '" value="' . $_SESSION['Installer']['Password'] . '" />
 					<fieldhelp>' . __('Enter the database user password if one exists') . '</fieldhelp>
+				</field>
+				<field>
+					<label for="Database">' . __('Database Name') . ': </label>
+					<input type="text" name="Database" id="Database" required="required" value="' . $_SESSION['Installer']['Database'] . '" maxlength="32" placeholder="' . __('The database name') . '" />
+					<fieldhelp>' . __('If your db user above does not have permissions to create a database then this database must be created and empty.') . '</fieldhelp>
+				</field>
+				<field>
+					<label for="Prefix">' . __('Database Prefix') . ' - ' . __('Optional') . ': </label>
+					<input type="text" name="Prefix" size="25" placeholder="' . __('Useful with shared hosting') . '" pattern="^[A-Za-z0-9$]+_$" />&#160;
+					<fieldhelp>' . __('Optional: a prefix for all database tables, in the form of prefix_') . '</fieldhelp>
 				</field>
 			</ul>';
 if ($Result != '') {
