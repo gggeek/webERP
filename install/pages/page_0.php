@@ -122,19 +122,18 @@ echo $Key .'xxx'. $_SESSION['Installer']['Language'];
 echo '</select>
 	</form>';
 
-echo '<p>', __('For this installation to work, you need to be running PHP and mysql on your server'), '</p>';
+echo '<p>', __('For this installation to work, you need to be running PHP (version 8.1 or greater) and mysql on your server'), '</p>';
 
 echo '<p>', __('You will also need the following PHP extensions to be installed'), '</p>';
 
 echo '<ol>
-		<li>php-gd - ', __('A graphics extension'), '</li>
-		<li>php-intl - ', __('For translations to work'), '</li>
 		<li>php-mbstring - ', __('An extension to provide multi-byte string functionality'), '</li>
-		<li>php-mysql - ', __('Extension to provide connectivity with the database'), '</li>
+		<li>php-mysqli - ', __('Extension to provide connectivity with the database'), '</li>
 		<li>php-xml - ', __('Used to decode xml files'), '</li>
-		<li>php-zip - ', __('For compression functionality'), '</li>
 	</ol>';
 
 echo '<p>', __('These are all standard extensions, but if you are using an external web hosting company then check with them that they have the correct extensions installed.'), '</p>';
+
+echo '<p>', __('Other recommended PHP extensions to have installed are:'), ' bcmath, calendar, curl, ftp, gd, gettext, mcrypt, iconv, simplexml, sqlite3, zip, zlib</p>';
 
 echo '</section>';
