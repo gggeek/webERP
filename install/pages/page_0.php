@@ -126,6 +126,8 @@ echo '<p>', __('For this installation to work, you need to be running PHP (versi
 
 echo '<p>', __('You will also need the following PHP extensions to be installed'), '</p>';
 
+/// @todo grab the list of required and suggested exts from parsing composer.json
+
 echo '<ol>
 		<li>php-mbstring - ', __('An extension to provide multi-byte string functionality'), '</li>
 		<li>php-mysqli - ', __('Extension to provide connectivity with the database'), '</li>
