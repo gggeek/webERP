@@ -37,7 +37,6 @@ class SerialItem {
 	var $ExpiryDate;
 
 	function __construct($BundleRef, $BundleQty, $ExpiryDate='1000-01-01') {
-
 		$this->BundleRef = $BundleRef;
 		$this->BundleQty = $BundleQty;
 		$this->ExpiryDate = $ExpiryDate;
