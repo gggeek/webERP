@@ -176,7 +176,7 @@ while ($MyRow=DB_fetch_array($Result)){
 			$PrevFontSize=$FontSize;
 			$FontSize=8;
 			$LineHeight=$FontSize*1.25;
-			$LeftOvers = $pdf->addTextWrap($XPos+5,$YPos,500,$FontSize,$PrevTrailer,'left');
+			$pdf->addTextWrap($XPos+5,$YPos,500,$FontSize,$PrevTrailer,'left');
 			$FontSize=$PrevFontSize;
 			$LineHeight=$FontSize*1.25;
 			$YPos -= $LineHeight;
@@ -187,7 +187,7 @@ while ($MyRow=DB_fetch_array($Result)){
 			$PageNumber++;
 			include('includes/PDFProdSpecHeader.php');
 		}
-		$LeftOvers = $pdf->addTextWrap($XPos,$YPos,500,$FontSize,$SectionTitle,'center');
+		$pdf->addTextWrap($XPos,$YPos,500,$FontSize,$SectionTitle,'center');
 		$YPos -= $LineHeight;
 		$pdf->setFont('','B');
 		$pdf->SetFillColor(200,200,200);
@@ -196,7 +196,7 @@ while ($MyRow=DB_fetch_array($Result)){
 			$ColLabel=$CurColLab;
 			$ColWidth=$SectionColSizes[$x];
 			$x++;
-			$LeftOvers = $pdf->addTextWrap($XPos+1,$YPos,$ColWidth,$FontSize,$ColLabel,'center',1,'fill');
+			$pdf->addTextWrap($XPos+1,$YPos,$ColWidth,$FontSize,$ColLabel,'center',1,'fill');
 			$XPos+=$ColWidth;
 		}
 		$SectionHeading=1;
@@ -236,7 +236,7 @@ while ($MyRow=DB_fetch_array($Result)){
 				$DispValue=$MyRow['method'];
 				break;
 		}
-		$LeftOvers = $pdf->addTextWrap($XPos+1,$YPos,$ColWidth,$FontSize,$DispValue,$ColAlign,1);
+		$pdf->addTextWrap($XPos+1,$YPos,$ColWidth,$FontSize,$DispValue,$ColAlign,1);
 		$XPos+=$ColWidth;
 		$x++;
 	}
@@ -271,7 +271,7 @@ $Disclaimer= __('The information provided on this datasheet should only be used 
 $FontSize=8;
 $LineHeight=$FontSize*1.25;
 $YPos -= $LineHeight;
-$LeftOvers = $pdf->addTextWrap($XPos+5,$YPos,500,$FontSize,$Disclaimer);
+$pdf->addTextWrap($XPos+5,$YPos,500,$FontSize,$Disclaimer);
 $YPos -= $LineHeight;
 $YPos -= $LineHeight;
 $SQL = "SELECT confvalue

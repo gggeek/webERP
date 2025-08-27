@@ -302,7 +302,7 @@ if (isset($_POST['TaxAuthority']) and isset($_POST['PrintPDF']) and isset($_POST
 	$YPos -= $FontSize * 4; // Jumps additional lines.
 	$pdf->addText($Left_Margin, $YPos, $FontSize, __('Adjustments for Tax paid to Customs, FBT, entertainments etc must also be entered'));
 	$YPos -= $FontSize;
-	$pdf->addTextWrap($Left_Margin, $YPos - $FontSize, $Page_Width - $Left_Margin - $Right_Margin, $FontSize, __('This information excludes tax on journal entries/payments/receipts. All tax should be entered through AR/AP.'));
+	$LeftOvers = $pdf->addTextWrap($Left_Margin, $YPos - $FontSize, $Page_Width - $Left_Margin - $Right_Margin, $FontSize, __('This information excludes tax on journal entries/payments/receipts. All tax should be entered through AR/AP.'));
 	$YPos -= $FontSize;
 	$pdf->addTextWrap($Left_Margin, $YPos - $FontSize, $Page_Width - $Left_Margin - $Right_Margin, $FontSize, $LeftOvers);
 	if ($SalesCount + $PurchasesCount + $PettyCashCount == 0) {

@@ -315,7 +315,7 @@ if(isset($PrintPDF)
 				$DisplayPrice = locale_number_format($MyRow2['fxprice'],$MyRow['decimalplaces']);
 				$DisplayQty = locale_number_format($MyRow2['quantity'],$MyRow2['decimalplaces']);
 
-				$LeftOvers = $pdf->addTextWrap($Left_Margin+5,$YPos,71,$FontSize,$MyRow2['stockid']);// Print item code.
+				$pdf->addTextWrap($Left_Margin+5,$YPos,71,$FontSize,$MyRow2['stockid']);// Print item code.
 				//Get translation if it exists
 				$TranslationResult = DB_query("SELECT descriptiontranslation
 												FROM stockdescriptiontranslations
@@ -450,9 +450,9 @@ if(isset($PrintPDF)
 		$YPos = $Bottom_Margin+(3*$LineHeight);
 
 	/*Print out the invoice text entered */
-		$FontSize =8;
-		$LeftOvers=explode("\r\n",DB_escape_string($MyRow['invtext']));
-		for ($i=0;$i<sizeOf($LeftOvers);$i++) {
+		$FontSize = 8;
+		$LeftOvers = explode("\r\n",DB_escape_string($MyRow['invtext']));
+		for ($i=0; $i<sizeOf($LeftOvers); $i++) {
 			$pdf->addTextWrap($Left_Margin, $YPos-8-($i*8), 290, $FontSize, $LeftOvers[$i]);
 		}
 		$FontSize = 10;
