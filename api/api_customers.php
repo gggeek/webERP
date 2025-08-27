@@ -1,126 +1,126 @@
 <?php
 
-/* Verify that the debtor number is valid, and doesn't already
+/** Verify that the debtor number is valid, and doesn't already
    exist.*/
-	function VerifyDebtorNo($DebtorNumber, $i, $Errors) {
-		if ((mb_strlen($DebtorNumber)<1) or (mb_strlen($DebtorNumber)>10)) {
-			$Errors[$i] = IncorrectDebtorNumberLength;
-		}
-		$Searchsql = "SELECT count(debtorno)
-  				     FROM debtorsmaster
-				     WHERE debtorno='".$DebtorNumber."'";
-		$SearchResult = DB_query($Searchsql);
-		$Answer = DB_fetch_row($SearchResult);
-		if ($Answer[0] != 0) {
-			$Errors[$i] = DebtorNoAlreadyExists;
-		}
-		return $Errors;
+function VerifyDebtorNo($DebtorNumber, $i, $Errors) {
+	if ((mb_strlen($DebtorNumber)<1) or (mb_strlen($DebtorNumber)>10)) {
+		$Errors[$i] = IncorrectDebtorNumberLength;
 	}
-
-/* Check that the debtor number exists*/
-	function VerifyDebtorExists($DebtorNumber, $i, $Errors) {
-		$Searchsql = "SELECT count(debtorno)
-				     FROM debtorsmaster
-				     WHERE debtorno='".$DebtorNumber."'";
-		$SearchResult = DB_query($Searchsql);
-		$Answer = DB_fetch_array($SearchResult);
-		if ($Answer[0]==0) {
-			$Errors[$i] = DebtorDoesntExist;
-		}
-		return $Errors;
+	$Searchsql = "SELECT count(debtorno)
+				 FROM debtorsmaster
+				 WHERE debtorno='".$DebtorNumber."'";
+	$SearchResult = DB_query($Searchsql);
+	$Answer = DB_fetch_row($SearchResult);
+	if ($Answer[0] != 0) {
+		$Errors[$i] = DebtorNoAlreadyExists;
 	}
+	return $Errors;
+}
 
-/* Check that the name exists and is 40 characters or less long */
-	function VerifyDebtorName($DebtorName, $i, $Errors) {
-		if ((mb_strlen($DebtorName)<1) or (mb_strlen($DebtorName)>40)) {
-			$Errors[$i] = IncorrectDebtorNameLength;
-		}
-		return $Errors;
+/** Check that the debtor number exists*/
+function VerifyDebtorExists($DebtorNumber, $i, $Errors) {
+	$Searchsql = "SELECT count(debtorno)
+				 FROM debtorsmaster
+				 WHERE debtorno='".$DebtorNumber."'";
+	$SearchResult = DB_query($Searchsql);
+	$Answer = DB_fetch_array($SearchResult);
+	if ($Answer[0]==0) {
+		$Errors[$i] = DebtorDoesntExist;
 	}
+	return $Errors;
+}
 
-/* Check that the address lines are correct length*/
-	function VerifyAddressLine($AddressLine, $Length, $i, $Errors) {
-		if (mb_strlen($AddressLine)>$Length) {
-			$Errors[$i] = InvalidAddressLine;
-		}
-		return $Errors;
+/** Check that the name exists and is 40 characters or less long */
+function VerifyDebtorName($DebtorName, $i, $Errors) {
+	if ((mb_strlen($DebtorName)<1) or (mb_strlen($DebtorName)>40)) {
+		$Errors[$i] = IncorrectDebtorNameLength;
 	}
+	return $Errors;
+}
 
-/* Check that the currency code is set up in the weberp database */
-	function VerifyCurrencyCode($CurrCode, $i, $Errors) {
-		$Searchsql = "SELECT COUNT(currabrev)
-					  FROM currencies
-					  WHERE currabrev='".$CurrCode."'";
-		$SearchResult = DB_query($Searchsql);
-		$Answer = DB_fetch_row($SearchResult);
-		if ($Answer[0] == 0) {
-			$Errors[$i] = CurrencyCodeNotSetup;
-		}
-		return $Errors;
+/** Check that the address lines are correct length*/
+function VerifyAddressLine($AddressLine, $Length, $i, $Errors) {
+	if (mb_strlen($AddressLine)>$Length) {
+		$Errors[$i] = InvalidAddressLine;
 	}
+	return $Errors;
+}
 
-/* Check that the sales type is set up in the weberp database */
-	function VerifySalesType($SalesType, $i, $Errors) {
-		$Searchsql = "SELECT COUNT(typeabbrev)
-					 FROM salestypes
-					  WHERE typeabbrev='".$SalesType."'";
-		$SearchResult = DB_query($Searchsql);
-		$Answer = DB_fetch_row($SearchResult);
-		if ($Answer[0] == 0) {
-			$Errors[$i] = SalesTypeNotSetup;
-		}
-		return $Errors;
+/** Check that the currency code is set up in the weberp database */
+function VerifyCurrencyCode($CurrCode, $i, $Errors) {
+	$Searchsql = "SELECT COUNT(currabrev)
+				  FROM currencies
+				  WHERE currabrev='".$CurrCode."'";
+	$SearchResult = DB_query($Searchsql);
+	$Answer = DB_fetch_row($SearchResult);
+	if ($Answer[0] == 0) {
+		$Errors[$i] = CurrencyCodeNotSetup;
 	}
+	return $Errors;
+}
 
-/* Check that the clientsince date is a valid date */
-	function VerifyClientSince($ClientSince, $i, $Errors) {
-		if (!Is_Date($ClientSince)) {
+/** Check that the sales type is set up in the weberp database */
+function VerifySalesType($SalesType, $i, $Errors) {
+	$Searchsql = "SELECT COUNT(typeabbrev)
+				 FROM salestypes
+				  WHERE typeabbrev='".$SalesType."'";
+	$SearchResult = DB_query($Searchsql);
+	$Answer = DB_fetch_row($SearchResult);
+	if ($Answer[0] == 0) {
+		$Errors[$i] = SalesTypeNotSetup;
+	}
+	return $Errors;
+}
+
+/** Check that the clientsince date is a valid date */
+function VerifyClientSince($ClientSince, $i, $Errors) {
+	if (!Is_Date($ClientSince)) {
 //			$Errors[$i] = InvalidClientSinceDate;
-		}
-		return $Errors;
 	}
+	return $Errors;
+}
 
-/* Check that the hold reason is set up in the weberp database */
-	function VerifyHoldReason($HoldReason , $i, $Errors) {
-		$Searchsql = "SELECT COUNT(reasoncode)
-					 FROM holdreasons
-					  WHERE reasoncode='".$HoldReason."'";
-		$SearchResult = DB_query($Searchsql);
-		$Answer = DB_fetch_row($SearchResult);
-		if ($Answer[0] == 0) {
-			$Errors[$i] = HoldReasonNotSetup;
-		}
-		return $Errors;
+/** Check that the hold reason is set up in the weberp database */
+function VerifyHoldReason($HoldReason , $i, $Errors) {
+	$Searchsql = "SELECT COUNT(reasoncode)
+				 FROM holdreasons
+				  WHERE reasoncode='".$HoldReason."'";
+	$SearchResult = DB_query($Searchsql);
+	$Answer = DB_fetch_row($SearchResult);
+	if ($Answer[0] == 0) {
+		$Errors[$i] = HoldReasonNotSetup;
 	}
+	return $Errors;
+}
 
-/* Check that the payment terms are set up in the weberp database */
-	function VerifyPaymentTerms($PaymentTerms , $i, $Errors) {
-		$Searchsql = "SELECT COUNT(termsindicator)
-					 FROM paymentterms
-					  WHERE termsindicator='".$PaymentTerms."'";
-		$SearchResult = DB_query($Searchsql);
-		$Answer = DB_fetch_row($SearchResult);
-		if ($Answer[0] == 0) {
-			$Errors[$i] = PaymentTermsNotSetup;
-		}
-		return $Errors;
+/** Check that the payment terms are set up in the weberp database */
+function VerifyPaymentTerms($PaymentTerms , $i, $Errors) {
+	$Searchsql = "SELECT COUNT(termsindicator)
+				 FROM paymentterms
+				  WHERE termsindicator='".$PaymentTerms."'";
+	$SearchResult = DB_query($Searchsql);
+	$Answer = DB_fetch_row($SearchResult);
+	if ($Answer[0] == 0) {
+		$Errors[$i] = PaymentTermsNotSetup;
 	}
+	return $Errors;
+}
 
-/* Verify that the discount figure is numeric */
-	function VerifyDiscount($Discount, $i, $Errors) {
-		if (!is_numeric($Discount)) {
-			$Errors[$i] = InvalidDiscount;
-		}
-		return $Errors;
+/** Verify that the discount figure is numeric */
+function VerifyDiscount($Discount, $i, $Errors) {
+	if (!is_numeric($Discount)) {
+		$Errors[$i] = InvalidDiscount;
 	}
+	return $Errors;
+}
 
-/* Verify that the payment discount figure is numeric */
-	function VerifyPymtDiscount($Discount, $i, $Errors) {
-		if (!is_numeric($Discount)) {
-			$Errors[$i] = InvalidPaymentDiscount;
-		}
-		return $Errors;
+/** Verify that the payment discount figure is numeric */
+function VerifyPymtDiscount($Discount, $i, $Errors) {
+	if (!is_numeric($Discount)) {
+		$Errors[$i] = InvalidPaymentDiscount;
 	}
+	return $Errors;
+}
 
 /* Verify that the last paid amount is numeric */
 	function VerifyLastPaid($LastPaid, $i, $Errors) {
