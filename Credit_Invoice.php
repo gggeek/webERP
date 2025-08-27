@@ -1,16 +1,19 @@
 <?php
-/*Functions to get the GL codes to post the transaction to */
+
+/// @todo move to after session.php inclusion, unless there are side effects
+/* Functions to get the GL codes to post the transaction to */
 include('includes/GetSalesTransGLCodes.php');
-/*defines the structure of the data required to hold the transaction as a session variable */
+/* defines the structure of the data required to hold the transaction as a session variable */
 include('includes/DefineCartClass.php');
 include('includes/DefineSerialItems.php');
-/* Session started in header.php for password checking and authorisation level check */
-include('includes/session.php');
+
+require(__DIR__ . '/includes/session.php');
+
 $ViewTopic = 'ARTransactions';
 $BookMark = 'CreditNotes';
-
 $Title = __('Credit An Invoice');
 include('includes/header.php');
+
 include('includes/SQL_CommonFunctions.php');
 include('includes/CommissionFunctions.php');
 
@@ -33,7 +36,7 @@ if (!isset($_GET['InvoiceNumber']) and !$_SESSION['ProcessingCredit']) {
 	unset($_SESSION['CreditItems' . $identifier]);
 
 	$_SESSION['ProcessingCredit'] = intval($_GET['InvoiceNumber']);
-	$_SESSION['CreditItems' . $identifier] = new cart;
+	$_SESSION['CreditItems' . $identifier] = new Cart;
 
 	/*read in all the guff from the selected invoice into the Items cart	*/
 
