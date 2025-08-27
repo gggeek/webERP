@@ -212,7 +212,7 @@ if (isset($_POST['PlacePO'])) { /*user hit button to place PO for selected order
 				if ($SupplierID != $ItemRow['supplierno']) {
 				/* This order item is purchased from a different supplier so need to finish off the authorisation of the previous order and start a new order */
 
-					if ($SupplierID != '' AND $_SESSION['AutoAuthorisePO'] == 1) {
+					if ($SupplierID != '' and $_SESSION['AutoAuthorisePO'] == 1) {
 						/* if an order is/has been created already and the supplier of this item has changed - so need to finish off the order */
 						//if the user has authority to authorise the PO then it should be created as authorised
 						$AuthSQL ="SELECT authlevel
@@ -226,7 +226,7 @@ if (isset($_POST['PlacePO'])) { /*user hit button to place PO for selected order
 							$AuthRow['authlevel'] = 0;
 						}
 
-						if (DB_num_rows($AuthResult) > 0 AND $AuthRow['authlevel'] > $Order_Value) { //user has authority to authrorise as well as create the order
+						if (DB_num_rows($AuthResult) > 0 and $AuthRow['authlevel'] > $Order_Value) { //user has authority to authrorise as well as create the order
 							$StatusComment = date($_SESSION['DefaultDateFormat']) . ' - ' . __('Order Created and Authorised by') . ' ' . $UserDetails . ' - ' . __('Auto created from sales orders')  . '<br />';
 							$ErrMsg = __('Could not update purchase order status to Authorised');
 							$Result = DB_query("UPDATE purchorders SET allowprint = 1,
@@ -378,7 +378,7 @@ if (isset($_POST['PlacePO'])) { /*user hit button to place PO for selected order
 
 			/* The last line to be purchase ordered was reach so there will be an order which is not yet completed in progress now to completed it */
 
-			if ($SupplierID != '' AND $_SESSION['AutoAuthorisePO'] == 1) {
+			if ($SupplierID != '' and $_SESSION['AutoAuthorisePO'] == 1) {
 				//if the user has authority to authorise the PO then it should be created as authorised
 				$AuthSQL ="SELECT authlevel
 							FROM purchorderauth
@@ -391,7 +391,7 @@ if (isset($_POST['PlacePO'])) { /*user hit button to place PO for selected order
 					  $AuthRow['authlevel'] = 0;
 				}
 
-				if (DB_num_rows($AuthResult) > 0 AND $AuthRow['authlevel'] > $Order_Value) { //user has authority to authrorise as well as create the order
+				if (DB_num_rows($AuthResult) > 0 and $AuthRow['authlevel'] > $Order_Value) { //user has authority to authrorise as well as create the order
 					$StatusComment = date($_SESSION['DefaultDateFormat']) . ' - ' . __('Order Created and Authorised by') . $UserDetails . ' - ' . __('Auto created from sales orders') . '<br />';
 					$ErrMsg = __('Could not update purchase order status to Authorised');
 					$Result = DB_query("UPDATE purchorders SET allowprint = 1,
@@ -448,7 +448,7 @@ if (isset($_POST['CustomerRef'])) {
 	$CustomerRef = $_POST['CustomerRef'];
 }
 
-if (isset($OrderNumber) AND $OrderNumber != '') {
+if (isset($OrderNumber) and $OrderNumber != '') {
 	$OrderNumber = trim($OrderNumber);
 	if (!is_numeric($OrderNumber)) {
 		echo '<br />
@@ -639,7 +639,7 @@ if (!isset($StockID)) {
 		</div>';
 
 if (isset($StockItemsResult)
-	AND DB_num_rows($StockItemsResult) > 1) {
+	and DB_num_rows($StockItemsResult) > 1) {
 
 	echo '<table cellpadding="2" class="selection">
 		<thead>
@@ -669,7 +669,7 @@ if (isset($StockItemsResult)
 }
 //end if stock search results to show
   else {
-	 if (isset($StockItemsResult) AND DB_num_rows($StockItemsResult) == 1) {
+	 if (isset($StockItemsResult) and DB_num_rows($StockItemsResult) == 1) {
 		 $MyStkRow = DB_fetch_array($StockItemsResult);
 		 $SelectedStockItem = $MyStkRow['stockid'];
 	 }
@@ -689,12 +689,12 @@ if (isset($StockItemsResult)
 		$Quotations = 0;
 	}
 
-	if (isset($_POST['DueDateFrom']) AND is_date($_POST['DueDateFrom'])) {
+	if (isset($_POST['DueDateFrom']) and is_date($_POST['DueDateFrom'])) {
 		$DueDateFrom = " AND itemdue >= '"  . FormatDateForSQL($_POST['DueDateFrom']) . "' ";
 	} else {
 		$DueDateFrom = '';
 	}
-	if (isset($_POST['DueDateTo']) AND is_date($_POST['DueDateTo'])) {
+	if (isset($_POST['DueDateTo']) and is_date($_POST['DueDateTo'])) {
 		$DueDateTo = " AND itemdue <= '" . FormatDateForSQL($_POST['DueDateTo']) . "'";
 	} else {
 		$DueDateTo = '';

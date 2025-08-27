@@ -48,7 +48,7 @@ function DB_query($SQL, $ErrorMessage='', $DebugMessage= '', $Transaction=false,
 	$Result = pg_query($db, $SQL);
 	$SQLArray = explode(' ', strtoupper(ltrim($SQL)));
 
-	if (!$Result AND $TrapErrors) {
+	if (!$Result and $TrapErrors) {
 		require_once($PathPrefix . 'includes/header.php');
 		if ($ErrorMessage == '') {
 			/// @todo add default error messages for insert/update/delete queries

@@ -1081,7 +1081,7 @@ $SOH_DateFields = array ('orddate',
 
 			$Result = api_DB_query($SQL,'', '', true);
 
-			if ($CompanyRecord['gllink_stock']==1 AND $StandardCost !=0){
+			if ($CompanyRecord['gllink_stock']==1 and $StandardCost !=0){
 
 /*first the cost of sales entry - GL accounts are retrieved using the function GetCOGSGLAccount from includes/GetSalesTransGLCodes.php  */
 
@@ -1124,7 +1124,7 @@ $SOH_DateFields = array ('orddate',
 
 			} /* end of if GL and stock integrated and standard cost !=0  and not an asset */
 
-			if ($CompanyRecord['gllink_debtors']==1 AND $OrderLineRow['unitprice'] !=0){
+			if ($CompanyRecord['gllink_debtors']==1 and $OrderLineRow['unitprice'] !=0){
 
 				//Post sales transaction to GL credit sales
 				$SalesGLAccounts = GetSalesGLAccount($OrderHeader['area'], $OrderLineRow['stkcode'], $OrderHeader['ordertype']);
@@ -1176,7 +1176,7 @@ $SOH_DateFields = array ('orddate',
 		if ($CompanyRecord['gllink_debtors']==1){
 
 			/*Now post the tax to the GL at local currency equivalent */
-			if ($CompanyRecord['gllink_debtors']==1 AND $TaxAuthAmount !=0) {
+			if ($CompanyRecord['gllink_debtors']==1 and $TaxAuthAmount !=0) {
 
 				/*Loop through the tax authorities array to post each total to the taxauth glcode */
 				foreach ($TaxTotals as $Tax){

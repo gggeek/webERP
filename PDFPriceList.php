@@ -366,7 +366,7 @@ if (isset($_POST['PrintPDF']) or isset($_POST['View'])) {
 	$CatResult = DB_query($SQL);
 	while ($MyRow = DB_fetch_array($CatResult)) {
 		echo '<option' ;
-		if (isset($_POST['Categories']) AND in_array($MyRow['categoryid'], $_POST['Categories'])) {
+		if (isset($_POST['Categories']) and in_array($MyRow['categoryid'], $_POST['Categories'])) {
 			echo ' selected="selected"';
 		}
 		echo ' value="', $MyRow['categoryid'], '">', $MyRow['categorydescription'], '</option>';

@@ -146,7 +146,7 @@ if (!class_exists('Cpdf', false)) {
 			while($i<$nb) {
 
 				$c=mb_substr($s, $i, 1, 'UTF-8');
-				if($c===' ' AND $i>0) {
+				if($c===' ' and $i>0) {
 					$sep=$i;
 					$ls=$l;
 					$ns++;

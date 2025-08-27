@@ -31,7 +31,7 @@ if (isset($_GET['reportid'])) { // then entered with report id requested, fix va
 //check to see how script was entered
 if (!isset($_GET['action']) OR (!isset($_POST['ReportID']))) {
 	// then form entered from somewhere other than itself or contained a bad ID, show start form
-	if (isset($_POST['todo']) AND (!isset($_POST['ReportID']))) { // Error - button without report selected
+	if (isset($_POST['todo']) and (!isset($_POST['ReportID']))) { // Error - button without report selected
 		$usrMsg[] = array('message'=>RPT_NORPT, 'level'=>'error');
 	}
 	// fetch the existing reports for the selection menus

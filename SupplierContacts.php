@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
 			echo '<br />';
 		}
 	}
-	if (isset($SelectedContact) AND $InputError != 1) {
+	if (isset($SelectedContact) and $InputError != 1) {
 
 		/*SelectedContact could also exist if submit had not been clicked this code would not run in this case 'cos submit is false of course see the delete code below*/
 

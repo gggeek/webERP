@@ -49,7 +49,7 @@ class Contract {
 							    $UOM,
 							    $DecimalPlaces){
 
-		if (isset($StockID) AND $Quantity!=0){
+		if (isset($StockID) and $Quantity!=0){
 			$this->ContractBOM[$this->BOMComponentCounter] = new ContractComponent($this->BOMComponentCounter,
 																	$StockID,
 																	$ItemDescription,
@@ -79,7 +79,7 @@ function Add_To_ContractRequirements($Requirement,
 									$CostPerUnit,
 									$ContractReqID=0){
 
-		if (isset($Requirement) AND $Quantity!=0 AND $CostPerUnit!=0){
+		if (isset($Requirement) and $Quantity!=0 and $CostPerUnit!=0){
 			$this->ContractReqts[$this->RequirementsCounter] = new ContractRequirement($Requirement, $Quantity, $CostPerUnit,$ContractReqID);
 			$this->RequirementsCounter++;
 			Return 1;

@@ -31,7 +31,7 @@ include('includes/header.php');
 echo '<a href="'. $RootPath . '/PO_SelectOSPurchOrder.php">' . __('Back to Purchase Orders'). '</a>
 	<br />';
 
-if (isset($_GET['PONumber']) AND $_GET['PONumber']<=0 AND !isset($_SESSION['PO'.$identifier])) {
+if (isset($_GET['PONumber']) and $_GET['PONumber']<=0 and !isset($_SESSION['PO'.$identifier])) {
 	/* This page can only be called with a purchase order number for invoicing*/
 	echo '<div class="centre">
 			<a href= "' . $RootPath . '/PO_SelectOSPurchOrder.php">' . __('Select a purchase order to receive') . '</a>
@@ -41,7 +41,7 @@ if (isset($_GET['PONumber']) AND $_GET['PONumber']<=0 AND !isset($_SESSION['PO'.
 	include('includes/footer.php');
 	exit();
 } elseif (isset($_GET['PONumber'])
-			AND !isset($_POST['Update'])) {
+			and !isset($_POST['Update'])) {
 /*Update only occurs if the user hits the button to refresh the data and recalc the value of goods recd*/
 
 	$_GET['ModifyOrderNumber'] = intval($_GET['PONumber']);
@@ -83,14 +83,14 @@ echo '<form action="', htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8
 	'<input type="hidden" name="FormID" value="' . $_SESSION['FormID'] . '" />';
 
 if (!isset($_POST['ProcessGoodsReceived'])) {
-	if (!isset($_POST['DefaultReceivedDate']) AND !isset($_SESSION['PO' . $identifier]->DefaultReceivedDate)) {
+	if (!isset($_POST['DefaultReceivedDate']) and !isset($_SESSION['PO' . $identifier]->DefaultReceivedDate)) {
 		/* This is meant to be the date the goods are received - it does not make sense to set this to the date that we requested delivery in the purchase order - I have not applied your change here Tim for this reason - let me know if I have it wrong - Phil */
 		$_POST['DefaultReceivedDate'] = Date($_SESSION['DefaultDateFormat']);
 		$_SESSION['PO' . $identifier]->DefaultReceivedDate = $_POST['DefaultReceivedDate'];
 	} else {
-		if (isset($_POST['DefaultReceivedDate']) AND is_date($_POST['DefaultReceivedDate'])) {
+		if (isset($_POST['DefaultReceivedDate']) and is_date($_POST['DefaultReceivedDate'])) {
 			$_SESSION['PO' . $identifier]->DefaultReceivedDate = $_POST['DefaultReceivedDate'];
-		} elseif(isset($_POST['DefaultReceivedDate']) AND !is_date($_POST['DefaultReceivedDate'])) {
+		} elseif(isset($_POST['DefaultReceivedDate']) and !is_date($_POST['DefaultReceivedDate'])) {
 			prnMsg(__('The default received date is not a date format'),'error');
 			$_POST['DefaultReceivedDate'] = Date($_SESSION['DefaultDateFormat']);
 		}
@@ -98,7 +98,7 @@ if (!isset($_POST['ProcessGoodsReceived'])) {
 	if (!isset($_POST['SupplierReference'])) {
 		$_POST['SupplierReference'] = '';
 	} else {
-		if (isset($_POST['SupplierReference']) AND mb_strlen(trim($_POST['SupplierReference']))>30) {
+		if (isset($_POST['SupplierReference']) and mb_strlen(trim($_POST['SupplierReference']))>30) {
 			prnMsg(__('The supplier\'s delivery note no should not be more than 30 characters'),'error');
 		} else {
 			$_SESSION['PO' . $identifier]->SupplierReference = $_POST['SupplierReference'];
@@ -257,13 +257,13 @@ $DeliveryQuantityTooLarge = 0;
 $NegativesFound = false;
 $InputError = false;
 
-if (isset($_POST['DefaultReceivedDate']) AND !is_date($_POST['DefaultReceivedDate'])) {
+if (isset($_POST['DefaultReceivedDate']) and !is_date($_POST['DefaultReceivedDate'])) {
 	$InputError = true;
 	prnMsg(__('The goods received date is not a date format'),'error');
 
 }
 
-if (isset($_POST['SupplierReference']) AND mb_strlen(trim($_POST['SupplierReference']))>30) {
+if (isset($_POST['SupplierReference']) and mb_strlen(trim($_POST['SupplierReference']))>30) {
 	$InputError = true;
 	prnMsg(__('The delivery note of suppliers should not be more than 30 characters'),'error');
 }
@@ -275,7 +275,7 @@ if (count($_SESSION['PO'.$identifier]->LineItems)>0) {
 			$DeliveryQuantityTooLarge =1;
 			$InputError = true;
 		}
-		if ($OrderLine->ReceiveQty < 0 AND $_SESSION['ProhibitNegativeStock']==1) {
+		if ($OrderLine->ReceiveQty < 0 and $_SESSION['ProhibitNegativeStock']==1) {
 
 			$SQL = "SELECT locstock.quantity
 						FROM locstock
@@ -292,7 +292,7 @@ if (count($_SESSION['PO'.$identifier]->LineItems)>0) {
 	} /* end loop around the items received */
 } /* end if there are lines received */
 
-if ($_SESSION['PO'.$identifier]->SomethingReceived()==0 AND isset($_POST['ProcessGoodsReceived'])) { /*Then dont bother proceeding cos nothing to do ! */
+if ($_SESSION['PO'.$identifier]->SomethingReceived()==0 and isset($_POST['ProcessGoodsReceived'])) { /*Then dont bother proceeding cos nothing to do ! */
 
 	prnMsg(__('There is nothing to process') . '. ' . __('Please enter valid quantities greater than zero'),'warn');
 	echo '<div class="centre"><input type="submit" name="Update" value="' . __('Update') . '" /></div>';
@@ -303,14 +303,14 @@ if ($_SESSION['PO'.$identifier]->SomethingReceived()==0 AND isset($_POST['Proces
 
 	echo '<div class="centre"><input type="submit" name="Update" value="' . __('Update') . '" />';
 
-} elseif ($DeliveryQuantityTooLarge==1 AND isset($_POST['ProcessGoodsReceived'])) {
+} elseif ($DeliveryQuantityTooLarge==1 and isset($_POST['ProcessGoodsReceived'])) {
 
 	prnMsg(__('Entered quantities cannot be greater than the quantity entered on the purchase invoice including the allowed over-receive percentage'). ' ' . '(' . $_SESSION['OverReceiveProportion'] .'%)','error');
 	echo '<br />';
 	prnMsg(__('Modify the ordered items on the purchase invoice if you wish to increase the quantities'),'info');
 	echo '<div class="centre"><input type="submit" name="Update" value="' . __('Update') . '" />';
 
-}  elseif (isset($_POST['ProcessGoodsReceived']) AND $_SESSION['PO'.$identifier]->SomethingReceived()==1 AND $InputError == false) {
+}  elseif (isset($_POST['ProcessGoodsReceived']) and $_SESSION['PO'.$identifier]->SomethingReceived()==1 AND $InputError == false) {
 
 /* SQL to process the postings for goods received... */
 /* Company record set at login for information on GL Links and debtors GL account*/

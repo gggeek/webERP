@@ -82,7 +82,7 @@ if (isset($_POST['submit'])) {
 		$_POST['GLAccount']='';
 	}
 
-	if (isset($SelectedSalesPerson) AND $InputError !=1) {
+	if (isset($SelectedSalesPerson) and $InputError !=1) {
 
 		/*SelectedSalesPerson could also exist if submit had not been clicked this code would not run in this case cos submit is false of course  see the delete code below*/
 

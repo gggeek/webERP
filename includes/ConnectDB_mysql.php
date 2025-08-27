@@ -59,7 +59,7 @@ function DB_query($SQL, $ErrorMessage='', $DebugMessage= '', $Transaction=false,
 
 	$SQLArray = explode(' ', strtoupper(ltrim($SQL)));
 
-	if ($ErrNo != 0 AND $TrapErrors) {
+	if ($ErrNo != 0 and $TrapErrors) {
 		require_once($PathPrefix . 'includes/header.php');
 		if ($ErrorMessage == '') {
 			/// @todo add default error messages for insert/update/delete queries
@@ -91,7 +91,7 @@ function DB_query($SQL, $ErrorMessage='', $DebugMessage= '', $Transaction=false,
 			$_SESSION['LastInsertId'] = mysql_insert_id($db);
 		}
 
-		if (isset($_SESSION['MonthsAuditTrail']) AND $_SESSION['MonthsAuditTrail']>0 AND DB_affected_rows($Result)>0) {
+		if (isset($_SESSION['MonthsAuditTrail']) and $_SESSION['MonthsAuditTrail']>0 and DB_affected_rows($Result)>0) {
 			if (($SQLArray[0] == 'INSERT' or $SQLArray[0] == 'UPDATE' or $SQLArray[0] == 'DELETE') and $SQLArray[2] != 'audittrail') { // to ensure the auto delete of audit trail history is not logged
 				$AuditSQL = "INSERT INTO audittrail (transactiondate,
 								userid,
@@ -220,7 +220,7 @@ function DB_ReinstateForeignKeys() {
 function DB_table_exists($TableName) {
 	//global $db;
 
-	$SQL = "SELECT TABLE_NAME FROM information_schema.tables WHERE TABLE_SCHEMA = '" . $_SESSION['DatabaseName'] . "' AND TABLE_NAME = '" . $TableName . "'";
+	$SQL = "SELECT TABLE_NAME FROM information_schema.tables WHERE TABLE_SCHEMA = '" . $_SESSION['DatabaseName'] . "' and TABLE_NAME = '" . $TableName . "'";
 	$Result = DB_query($SQL);
 
 	if (DB_num_rows($Result) > 0) {

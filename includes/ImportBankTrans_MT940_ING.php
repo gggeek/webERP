@@ -71,7 +71,7 @@ if (substr($LineText,0,4)==':20:') { //Timestamp of report MT940 generation
 		 }
 	  }
 
-	  if (substr($LineText,0,1)!=':' AND $TransactionLine){
+	  if (substr($LineText,0,1)!=':' and $TransactionLine){
 		  //then it is the continuation of an :86: line
 		  $_SESSION['Trans'][$i]->Description .= $LineText;
 	  }

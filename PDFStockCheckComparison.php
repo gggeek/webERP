@@ -4,7 +4,7 @@
 
 require(__DIR__ . '/includes/session.php');
 
-if (isset($_POST['PrintPDF']) AND isset($_POST['ReportOrClose'])){
+if (isset($_POST['PrintPDF']) and isset($_POST['ReportOrClose'])){
 
 	include('includes/PDFStarter.php');
 	$pdf->addInfo('Title', __('Check Comparison Report') );

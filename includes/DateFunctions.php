@@ -77,7 +77,7 @@ function Is_date($DateEntry) {
 		return 0;
 	}
 
-	if (is_long((int)$DateArray[0]) AND is_long((int)$DateArray[1]) AND is_long((int)$DateArray[2])) {
+	if (is_long((int)$DateArray[0]) and is_long((int)$DateArray[1]) and is_long((int)$DateArray[2])) {
 
 		if (($_SESSION['DefaultDateFormat'] == 'd/m/Y') OR ($_SESSION['DefaultDateFormat'] == 'd.m.Y')) {
 			if (checkdate((int)$DateArray[1], (int)$DateArray[0], (int)$DateArray[2])) {
@@ -558,7 +558,7 @@ and converts to a yyyymmdd - EANCOM format 102*/
 
 	if ((int)$DateArray[2] < 60) {
 		$DateArray[2] = '20' . $DateArray[2];
-	} elseif ((int)$DateArray[2] > 59 AND (int)$DateArray[2] < 100) {
+	} elseif ((int)$DateArray[2] > 59 and (int)$DateArray[2] < 100) {
 		$DateArray[2] = '19' . $DateArray[2];
 	} elseif ((int)$DateArray[2] > 9999) {
 		return 0;
@@ -674,13 +674,13 @@ function Format_Date($DateEntry) {
 
 	if ((int)$DateArray[2] < 60) {
 		$DateArray[2] = '20' . $DateArray[2];
-	} elseif ((int)$DateArray[2] > 59 AND (int)$DateArray[2] < 100) {
+	} elseif ((int)$DateArray[2] > 59 and (int)$DateArray[2] < 100) {
 		$DateArray[2] = '19' . $DateArray[2];
 	} elseif ((int)$DateArray[2] > 9999) {
 		return 0;
 	}
 
-	if (is_long((int)$DateArray[0]) AND is_long((int)$DateArray[1]) AND is_long((int)$DateArray[2])) {
+	if (is_long((int)$DateArray[0]) and is_long((int)$DateArray[1]) and is_long((int)$DateArray[2])) {
 		if ($_SESSION['DefaultDateFormat'] == 'd/m/Y'){
 			if (checkdate((int)$DateArray[1], (int)$DateArray[0], (int)$DateArray[2])){
 				return $DateArray[0] . '/' . $DateArray[1] . '/' . $DateArray[2];
@@ -766,7 +766,7 @@ and converts to a yyyy-mm-dd format */
 			if (mb_strlen($Date_Array[0]) == 2) {
 				if ((int)$Date_Array[0] <= 60) {
 					$Date_Array[0] = '20' . $Date_Array[2];
-				} elseif ((int)$Date_Array[0] > 60 AND (int)$Date_Array[2] < 100) {
+				} elseif ((int)$Date_Array[0] > 60 and (int)$Date_Array[2] < 100) {
 					$Date_Array[0] = '19' . $Date_Array[2];
 				}
 			}
@@ -777,7 +777,7 @@ and converts to a yyyy-mm-dd format */
 			if (mb_strlen($Date_Array[2]) == 2) {
 				if ((int)$Date_Array[2] <= 60) {
 					$Date_Array[2] = '20' . $Date_Array[2];
-				} elseif ((int)$Date_Array[2] > 60 AND (int)$Date_Array[2] < 100) {
+				} elseif ((int)$Date_Array[2] > 60 and (int)$Date_Array[2] < 100) {
 					$Date_Array[2] = '19'. $Date_Array[2];
 				}
 			}
@@ -787,7 +787,7 @@ and converts to a yyyy-mm-dd format */
 			if (mb_strlen($Date_Array[2]) == 2) {
 				if ((int)$Date_Array[2] <= 60) {
 					$Date_Array[2] = '20' . $Date_Array[2];
-				} elseif ((int)$Date_Array[2] > 60 AND (int)$Date_Array[2] < 100) {
+				} elseif ((int)$Date_Array[2] > 60 and (int)$Date_Array[2] < 100) {
 					$Date_Array[2] = '19' . $Date_Array[2];
 				}
 			}
@@ -845,7 +845,7 @@ function LastDayOfMonth($DateEntry) {
 		if (mb_strlen($DateArray[0]) == 2) {
 			if ((int)$DateArray[0] <= 60) {
 				$DateArray[0] = '20' . $DateArray[2];
-			} elseif ((int)$DateArray[0] > 60 AND (int)$DateArray[2] < 100) {
+			} elseif ((int)$DateArray[0] > 60 and (int)$DateArray[2] < 100) {
 				$DateArray[0] = '19' . $DateArray[2];
 			}
 		}
@@ -856,7 +856,7 @@ function LastDayOfMonth($DateEntry) {
 		if (mb_strlen($DateArray[2]) == 2) {
 			if ((int)$DateArray[2] <= 60) {
 				$DateArray[2] = '20' . $DateArray[2];
-			} elseif ((int)$DateArray[2] > 60 AND (int)$DateArray[2] < 100) {
+			} elseif ((int)$DateArray[2] > 60 and (int)$DateArray[2] < 100) {
 				$DateArray[2] = '19' . $DateArray[2];
 			}
 		}
@@ -867,7 +867,7 @@ function LastDayOfMonth($DateEntry) {
 		if (mb_strlen($DateArray[2]) == 2) {
 			if ((int)$DateArray[2] <= 60) {
 				$DateArray[2] = '20' . $DateArray[2];
-			} elseif ((int)$DateArray[2] > 60 AND (int)$DateArray[2] < 100) {
+			} elseif ((int)$DateArray[2] > 60 and (int)$DateArray[2] < 100) {
 				$DateArray[2] = '19' . $DateArray[2];
 			}
 		}
@@ -915,14 +915,14 @@ function Date1GreaterThanDate2($Date1, $Date2) {
 	 *  a date >50 to be 1900's and less than to be 2000's
 	 */
 
-	if (mb_strlen($Year1) > 2 AND mb_strlen($Year2) == 2){
+	if (mb_strlen($Year1) > 2 and mb_strlen($Year2) == 2){
 		if ($Year2 > 50) {
 			$Year2 = 1900 + $Year2;
 		} else {
 			$Year2 = 2000 + $Year2;
 		}
 	}
-	if (mb_strlen($Year2) > 2 AND mb_strlen($Year1) == 2){
+	if (mb_strlen($Year2) > 2 and mb_strlen($Year1) == 2){
 		if ($Year1 > 50) {
 			$Year1 = 1900 + $Year1;
 		} else {
@@ -1206,13 +1206,13 @@ function CalcEarliestDispatchDate() {
 	/* If the hour is after Dispatch Cut Off Time default dispatch date to tomorrow */
 	$EarliestDispatch = (Date('H') >= $_SESSION['DispatchCutOffTime']) ? (time() + 24 * 60 * 60) : time();
 
-	if ((Date('w', $EarliestDispatch) == 0) AND ($_SESSION['WorkingDaysWeek'] != '7')) {
+	if ((Date('w', $EarliestDispatch) == 0) and ($_SESSION['WorkingDaysWeek'] != '7')) {
 
 	/*if today is a sunday AND the company does NOT work 7 days a week, the dispatch date must be tomorrow (Monday) or after */
 
 		$EarliestDispatch = Mktime(0, 0, 0, Date('m', $EarliestDispatch), Date('d', $EarliestDispatch) + 1, Date('y', $EarliestDispatch));
 
-	} elseif ((Date('w', $EarliestDispatch) == 6) AND ($_SESSION['WorkingDaysWeek'] != '6') AND ($_SESSION['WorkingDaysWeek'] != '7')) {
+	} elseif ((Date('w', $EarliestDispatch) == 6) and ($_SESSION['WorkingDaysWeek'] != '6') and ($_SESSION['WorkingDaysWeek'] != '7')) {
 
 	/*if today is a saturday AND the company does NOT work at least 6 days a week, the dispatch date must be Monday or after */
 
@@ -1301,7 +1301,7 @@ function GetPeriod($TransDate, $UseProhibit = true) {
 		$TransDate = mktime(0, 0, 0, $DateArray[1], $DateArray[2], $DateArray[0]);
 	}
 
-	if (Is_Date(ConvertSQLDate($_SESSION['ProhibitPostingsBefore'])) AND $UseProhibit){ //then the ProhibitPostingsBefore configuration is set
+	if (Is_Date(ConvertSQLDate($_SESSION['ProhibitPostingsBefore'])) and $UseProhibit){ //then the ProhibitPostingsBefore configuration is set
 		$Date_Array = explode('-', $_SESSION['ProhibitPostingsBefore']); //its in ANSI SQL format
 		$ProhibitPostingsBefore = mktime(0, 0, 0, $Date_Array[1], $Date_Array[2], $Date_Array[0]);
 

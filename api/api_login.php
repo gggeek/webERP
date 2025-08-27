@@ -102,7 +102,7 @@ function GetAPIErrorMessages( $errcodes )
 function DoSetup()
 {
     global  $PathPrefix;
-    if (isset($_SESSION['db']) AND $_SESSION['db'] != '' )
+    if (isset($_SESSION['db']) and $_SESSION['db'] != '' )
         include($PathPrefix . 'includes/GetConfig.php');
 
     $db = $_SESSION['db'];	    // Used a bit in the following.

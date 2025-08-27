@@ -19,11 +19,11 @@ function CalcFreightCost ($TotalValue,
 	global $CountriesArray;
 
 	$ParameterError = false;
-	if ((!isset($BrAdd2)) AND (!isset($BrAdd3)) AND (!isset($BrAdd4)) AND (!isset($BrAdd5)) AND (!isset($BrAddCountry))){
+	if ((!isset($BrAdd2)) and (!isset($BrAdd3)) and (!isset($BrAdd4)) and (!isset($BrAdd5)) and (!isset($BrAddCountry))){
 		// No address field to detect destination ==> ERROR
 		$ParameterError = true;
 	}
-	if ((!isset($TotalVolume)) AND (!isset($TotalWeight))){
+	if ((!isset($TotalVolume)) and (!isset($TotalWeight))){
 		// No weight AND no volume ==> ERROR
 		$ParameterError = true;
 	}
@@ -102,7 +102,7 @@ function CalcFreightCost ($TotalValue,
 	} else {
 		$CalcFreightCost = "NOT AVAILABLE";
 	}
-	if ($TotalValue >= $_SESSION['FreightChargeAppliesIfLessThan'] AND $_SESSION['FreightChargeAppliesIfLessThan']!=0){
+	if ($TotalValue >= $_SESSION['FreightChargeAppliesIfLessThan'] and $_SESSION['FreightChargeAppliesIfLessThan']!=0){
 		/*Even though the order is over the freight free threshold - still need to calculate the best shipper to ensure get best deal*/
 		$CalcFreightCost =0;
 	}

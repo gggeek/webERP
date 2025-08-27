@@ -24,7 +24,7 @@ class Journal {
 	}
 
 	function Add_To_GLAnalysis($Amount, $Narrative, $GLCode, $GLActName, $Tag, $AssetID=1){
-		if (isset($GLCode) AND $Amount!=0){
+		if (isset($GLCode) and $Amount!=0){
 			$this->GLEntries[$this->GLItemID] = new JournalGLAnalysis($Amount, $Narrative, $this->GLItemID, $GLCode, $GLActName, $Tag, $AssetID);
 			$this->GLItemCounter++;
 			$this->GLItemID++;

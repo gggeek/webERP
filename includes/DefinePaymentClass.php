@@ -58,7 +58,7 @@ class Payment {
 								$Tag,
 								$Cheque){
 
-		if (isset($GLCode) AND $Amount!=0){
+		if (isset($GLCode) and $Amount!=0){
 			$this->GLItems[$this->GLItemCounter] = new PaymentGLAnalysis($Amount,
 																		$Narrative,
 																		$this->GLItemCounter,

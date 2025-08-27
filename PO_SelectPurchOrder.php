@@ -31,7 +31,7 @@ echo '<form action="' . htmlspecialchars($_SERVER['PHP_SELF'],ENT_QUOTES,'UTF-8'
 if (isset($_POST['ResetPart'])) {
 	unset($SelectedStockItem);
 }
-if (isset($OrderNumber) AND $OrderNumber != '') {
+if (isset($OrderNumber) and $OrderNumber != '') {
 	if (!is_numeric($OrderNumber)) {
 		prnMsg(__('The Order Number entered') . ' <U>' . __('MUST') . '</U> ' . __('be numeric'), 'error');
 		unset($OrderNumber);
@@ -45,7 +45,7 @@ if (isset($OrderNumber) AND $OrderNumber != '') {
 	}
 }
 if (isset($_POST['SearchParts'])) {
-	if ($_POST['Keywords'] AND $_POST['StockCode']) {
+	if ($_POST['Keywords'] and $_POST['StockCode']) {
 		prnMsg(__('Stock description keywords have been used in preference to the Stock code extract entered'), 'info');
 	}
 	if ($_POST['Keywords']) {
@@ -86,7 +86,7 @@ if (isset($_POST['SearchParts'])) {
 				stockmaster.decimalplaces,
 				stockmaster.units
 			ORDER BY stockmaster.stockid";
-	} elseif (!$_POST['StockCode'] AND !$_POST['Keywords']) {
+	} elseif (!$_POST['StockCode'] and !$_POST['Keywords']) {
 		$SQL = "SELECT stockmaster.stockid,
 				stockmaster.description,
 				stockmaster.decimalplaces,
@@ -151,17 +151,17 @@ if (!isset($OrderNumber) or $OrderNumber == "") {
 	} else {
 		echo '<option value="Pending_Authorised_Completed">' . __('Pending/Authorised/Completed') . '</option>';
 	}
-	if (isset($_POST['Status']) AND $_POST['Status']=='Pending'){
+	if (isset($_POST['Status']) and $_POST['Status']=='Pending'){
 		echo '<option selected="selected" value="Pending">' . __('Pending') . '</option>';
 	} else {
 		echo '<option value="Pending">' . __('Pending') . '</option>';
 	}
- 	if (isset($_POST['Status']) AND $_POST['Status']=='Authorised'){
+ 	if (isset($_POST['Status']) and $_POST['Status']=='Authorised'){
 		echo '<option selected="selected" value="Authorised">' . __('Authorised') . '</option>';
 	} else {
 		echo '<option value="Authorised">' . __('Authorised') . '</option>';
 	}
-	if (isset($_POST['Status']) AND $_POST['Status']=='Completed'){
+	if (isset($_POST['Status']) and $_POST['Status']=='Completed'){
 		echo '<option selected="selected" value="Completed">' . __('Completed') . '</option>';
 	} else {
 		echo '<option value="Completed">' . __('Completed') . '</option>';

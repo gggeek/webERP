@@ -63,7 +63,7 @@ function DB_query($SQL, $ErrorMessage='', $DebugMessage= '', $Transaction=false,
 
 	$SQLArray = explode(' ', strtoupper(ltrim($SQL)));
 
-	if ($ErrNo != 0 AND $TrapErrors) {
+	if ($ErrNo != 0 and $TrapErrors) {
 		require_once($PathPrefix . 'includes/header.php');
 		if ($ErrorMessage == '') {
 			/// @todo add default error messages for insert/update/delete queries
@@ -95,8 +95,8 @@ function DB_query($SQL, $ErrorMessage='', $DebugMessage= '', $Transaction=false,
 			$_SESSION['LastInsertId'] = mysqli_insert_id($db);
 		}
 
-		if (isset($_SESSION['MonthsAuditTrail']) AND $_SESSION['MonthsAuditTrail']>0 AND DB_affected_rows($Result)>0) {
-			if (($SQLArray[0] == 'INSERT' OR $SQLArray[0] == 'UPDATE' OR $SQLArray[0] == 'DELETE') AND $SQLArray[2] != 'audittrail') { // to ensure the auto delete of audit trail history is not logged
+		if (isset($_SESSION['MonthsAuditTrail']) and $_SESSION['MonthsAuditTrail']>0 and DB_affected_rows($Result)>0) {
+			if (($SQLArray[0] == 'INSERT' OR $SQLArray[0] == 'UPDATE' OR $SQLArray[0] == 'DELETE') and $SQLArray[2] != 'audittrail') { // to ensure the auto delete of audit trail history is not logged
 				$AuditSQL = "INSERT INTO audittrail (transactiondate,
 								userid,
 								querystring)

@@ -201,7 +201,7 @@ class PDF extends Cpdf {
 			$this->SetLeftMargin($Params['LineXStrt']);
 			$this->SetXY($Params['LineXStrt'], $this->y0);
 			// Fill with Fill color if it's time
-			if ($FillThisRow AND $Params['Fill']) $this->SetFillColor($FC[0],$FC[1],$FC[2]);
+			if ($FillThisRow and $Params['Fill']) $this->SetFillColor($FC[0],$FC[1],$FC[2]);
 				else $this->SetFillColor(255);
 			$this->Cell($Params['BoxWidth'],$MaxBoxY-$this->y0,'',0,0,'L',1);
 			// fill in the data
@@ -241,7 +241,7 @@ class PDF extends Cpdf {
 		$ThisRowHt = $maxY-$this->y0; // see how tall this row was
 		if ($ThisRowHt>$MaxRowHt) $MaxRowHt = $ThisRowHt; // keep that largest row so far to track pagination
 		$this->y0 = $maxY; // set y position to the largest value for next row
-		if ($Heading AND $Params['Line']) { // then it's the heading draw a line after if fill is set
+		if ($Heading and $Params['Line']) { // then it's the heading draw a line after if fill is set
 			$this->Line($Params['LineXStrt'],$maxY,$Params['LineXStrt']+$Params['BoxWidth'],$maxY);
 			$this->y0 = $this->y0+($Params['LineSize']*0.35);
 		}
@@ -337,10 +337,10 @@ function BuildPDF($ReportID, $Prefs) {
 	// find total number of days in this month
 	if ($ThisMonth=='04' OR $ThisMonth=='06' OR $ThisMonth=='09' OR $ThisMonth=='11') {
 		$TotalDays=30;
-	} elseif ($ThisMonth=='02' AND date('L')) {
+	} elseif ($ThisMonth=='02' and date('L')) {
 		$TotalDays=29;
 	} // Leap year
-	 elseif ($ThisMonth=='02' AND !date('L')) {
+	 elseif ($ThisMonth=='02' and !date('L')) {
 		$TotalDays=28;
 	} else {
 		$TotalDays=31;
@@ -452,9 +452,9 @@ function BuildPDF($ReportID, $Prefs) {
 
 	// Build query string and execute
 	$sqlCrit = '';
-	if ($strCrit AND $strDate) $sqlCrit .= $strDate.' AND '.$strCrit;
-	if (!$strCrit AND $strDate) $sqlCrit .= $strDate;
-	if ($strCrit AND !$strDate) $sqlCrit .= $strCrit;
+	if ($strCrit and $strDate) $sqlCrit .= $strDate.' AND '.$strCrit;
+	if (!$strCrit and $strDate) $sqlCrit .= $strDate;
+	if ($strCrit and !$strDate) $sqlCrit .= $strCrit;
 
 	// We now have the sql, find out how many groups in the query (to determine the number of forms)
 	$PageBreakField = $Prefs['GroupListings'][0]['fieldname'];

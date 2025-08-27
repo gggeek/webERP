@@ -5,9 +5,9 @@ require(__DIR__ . '/includes/session.php');
 use Dompdf\Dompdf;
 
 if (isset($_POST['FromCriteria'])
-	AND mb_strlen($_POST['FromCriteria'])>=1
-	AND isset($_POST['ToCriteria'])
-	AND mb_strlen($_POST['ToCriteria'])>=1){
+	and mb_strlen($_POST['FromCriteria'])>=1
+	and isset($_POST['ToCriteria'])
+	and mb_strlen($_POST['ToCriteria'])>=1){
 
 /*Now figure out the data to report for the criteria under review */
 

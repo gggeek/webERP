@@ -55,7 +55,7 @@ switch ($_GET['action']) {
 	default:
 	case "step2": // entered from select an action (home) page
 		// first check to see if a report was selected (except new report and import)
-		if (!isset($_GET['action']) OR ($ReportID=='' AND $_POST['todo']<>RPT_BTN_ADDNEW AND $_POST['todo']<>RPT_BTN_IMPORT)) {
+		if (!isset($_GET['action']) OR ($ReportID=='' and $_POST['todo']<>RPT_BTN_ADDNEW and $_POST['todo']<>RPT_BTN_IMPORT)) {
 			// skip error message if back from import was pressed
 			$DropDownString = RetrieveReports();
 			if (isset($_GET['action'])) $usrMsg[] = array('message'=>FRM_NORPT, 'level'=>'error');
@@ -478,7 +478,7 @@ switch ($_GET['action']) {
 				case RPT_BTN_CHANGE:
 				case RPT_BTN_ADDNEW:
 					// Error Check input, see if user entered a bad fieldname or description, error and reload
-					if ($_POST['TblField']=='' OR ($Params['index']=='Tbl' AND $_POST['TblDesc']=='')) {
+					if ($_POST['TblField']=='' OR ($Params['index']=='Tbl' and $_POST['TblDesc']=='')) {
 						$usrMsg[] = array('message'=>RPT_BADFLD, 'level'=>'error');
 						// reload form with bad data entered as field defaults, ready to be editted
 						if ($_POST['todo']==RPT_BTN_ADDNEW) $ButtonValue = RPT_BTN_ADDNEW;
@@ -608,7 +608,7 @@ switch ($_GET['action']) {
 					} else { // check the input for a valid fieldname
 						$IsValidField = ValidateField($ReportID, $_POST['DateField'], 'TestField');
 					}
-					if ($Type=='frm' AND $IsValidField) {
+					if ($Type=='frm' and $IsValidField) {
 						$IsValidField = ValidateField($ReportID, $_POST['FormBreakField'], 'TestField');
 					}
 					if (!$IsValidField) { // then user entered a bad fieldname or description, error and reload

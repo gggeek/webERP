@@ -13,7 +13,7 @@ items into the cart as well as plain vanilla items outside of the kitset loop
 $AlreadyOnThisOrder =0;
 
 if (count($_SESSION['Items'.$identifier]->LineItems)>0
-	AND $_SESSION['SO_AllowSameItemMultipleTimes']==0){
+	and $_SESSION['SO_AllowSameItemMultipleTimes']==0){
 
 	foreach ($_SESSION['Items'.$identifier]->LineItems AS $OrderItem) {
 
@@ -63,11 +63,11 @@ if ($AlreadyOnThisOrder!=1){
 			include('includes/footer.php');
 			exit();
 		} elseif (($_SESSION['AllowSalesOfZeroCostItems'] == false
-						AND $MyItemRow['standardcost']>0
-						AND ($MyItemRow['mbflag']=='B'
+				and $MyItemRow['standardcost']>0
+				and ($MyItemRow['mbflag']=='B'
 						OR $MyItemRow['mbflag']=='M'))
 					OR ($_SESSION['AllowSalesOfZeroCostItems'] == false
-						AND ($MyItemRow['mbflag']=='A'
+				and ($MyItemRow['mbflag']=='A'
 						OR $MyItemRow['mbflag']=='D'
 						OR $MyItemRow['mbflag']=='K'))
 					OR $_SESSION['AllowSalesOfZeroCostItems']==true) {
@@ -79,7 +79,7 @@ if ($AlreadyOnThisOrder!=1){
 				$UpdateDB = 'Yes';
 				$Result = DB_query("SELECT MAX(orderlineno) AS newlineno FROM salesorderdetails WHERE orderno='" . $_SESSION['ExistingOrder' . $identifier] . "'");
 				$MaxNumRow = DB_fetch_row($Result);
-				if ($MaxNumRow[0] != '' AND $MaxNumRow[0] >= 0) {
+				if ($MaxNumRow[0] != '' and $MaxNumRow[0] >= 0) {
 					$NewLineNo = $MaxNumRow[0]+1;
 				} else {
 					$NewLineNo = 0;
@@ -89,7 +89,7 @@ if ($AlreadyOnThisOrder!=1){
 				$NewLineNo = -1; /* this is ok b/c CartClass will change to the correct line no */
 			}
 
-			if (isset($StockItem) AND $MyItemRow['discountcategory'] != '' ){
+			if (isset($StockItem) and $MyItemRow['discountcategory'] != '' ){
 				$DiscCatsDone[$Counter]=$StockItem->DiscCat;
 				$QuantityOfDiscCat =0;
 				$Result = DB_query("SELECT MAX(discountrate) AS discount
@@ -98,7 +98,7 @@ if ($AlreadyOnThisOrder!=1){
 										AND discountcategory ='" . $MyRow['discountcategory'] . "'
 										AND quantitybreak <" . $NewItemQty);
 				$DiscCatRow = DB_fetch_row($Result);
-				if ($DiscCatRow[0] != '' AND $DiscCatRow[0] > 0) {
+				if ($DiscCatRow[0] != '' and $DiscCatRow[0] > 0) {
 					$Discount = $DiscCatRow[0];
 				} else {
 					$Discount = 0;
@@ -164,7 +164,7 @@ if ($AlreadyOnThisOrder!=1){
 					}
 				}
 			}
-			if ($_SESSION['Items'.$identifier]->DefaultCurrency != $_SESSION['CompanyRecord']['currencydefault'] AND $SellSupportDiscount != 0) {
+			if ($_SESSION['Items'.$identifier]->DefaultCurrency != $_SESSION['CompanyRecord']['currencydefault'] and $SellSupportDiscount != 0) {
 				/* Customer currency is not the same as the functional/home currency so need to convert the rebate amount */
 				/* Would be better to have the currency rate held in the cart object so only have to run this query once - this is a hack for this purpose! */
 				$CurrResult = DB_query("SELECT rate FROM currencies WHERE currabrev='" . $_SESSION['Items'.$identifier]->DefaultCurrency . "'");
@@ -185,14 +185,14 @@ if ($AlreadyOnThisOrder!=1){
 			if ($_SESSION['Items'.$identifier]->SpecialInstructions) {
 			  	prnMsg($_SESSION['Items'.$identifier]->SpecialInstructions,'warn');
             }
-			if ($_SESSION['CheckCreditLimits'] > 0 AND $AlreadyWarnedAboutCredit==false){
+			if ($_SESSION['CheckCreditLimits'] > 0 and $AlreadyWarnedAboutCredit==false){
 				/*Check credit limits is 1 for warn	and 2 for prohibit sales */
 				$_SESSION['Items'.$identifier]->CreditAvailable -= round(($NewItemQty * $Price * (1- $Discount)),$_SESSION['Items'.$identifier]->CurrDecimalPlaces);
 
-				if ($_SESSION['CheckCreditLimits']==1 AND $_SESSION['Items'.$identifier]->CreditAvailable <=0){
+				if ($_SESSION['CheckCreditLimits']==1 and $_SESSION['Items'.$identifier]->CreditAvailable <=0){
 					prnMsg(__('The customer account will breach their credit limit'),'warn');
 					$AlreadyWarnedAboutCredit = true;
-				} elseif ($_SESSION['CheckCreditLimits']==2 AND $_SESSION['Items'.$identifier]->CreditAvailable <=0){
+				} elseif ($_SESSION['CheckCreditLimits']==2 and $_SESSION['Items'.$identifier]->CreditAvailable <=0){
 					prnMsg(__('No more lines can be added to this order the customer account is currently at or over their credit limit'),'warn');
 					$WithinCreditLimit = false;
 					$AlreadyWarnedAboutCredit = true;

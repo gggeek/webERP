@@ -4,12 +4,12 @@ global $RootPath;
 
 // Systems can temporarily force a reload by setting the variable $ForceConfigReload to true
 
-if ((isset($ForceConfigReload) AND $ForceConfigReload==true) OR !isset($_SESSION['CompanyDefaultsLoaded'])) {
+if ((isset($ForceConfigReload) and $ForceConfigReload==true) OR !isset($_SESSION['CompanyDefaultsLoaded'])) {
 	$SQL = "SELECT confname, confvalue FROM config";
 	$ErrMsg = __('Could not get the configuration parameters from the database because');
 	$ConfigResult = DB_query($SQL, $ErrMsg);
 	while( $MyRow = DB_fetch_array($ConfigResult) ) {
-		if (is_numeric($MyRow['confvalue']) AND $MyRow['confname']!='DefaultPriceList' AND $MyRow['confname']!='VersionNumber'){
+		if (is_numeric($MyRow['confvalue']) and $MyRow['confname']!='DefaultPriceList' and $MyRow['confname']!='VersionNumber'){
 			//the variable name is given by $MyRow[0]
 			$_SESSION[$MyRow['confname']] = (double) $MyRow['confvalue'];
 		} else {

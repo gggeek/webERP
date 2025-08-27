@@ -125,7 +125,7 @@ class smtp {
 		if($this->is_connected()){
 
 			// Do we auth or not? Note the distinction between the auth variable and auth() function
-			if($this->auth AND !$this->authenticated){
+			if($this->auth and !$this->authenticated){
 				if(!$this->auth())
 					return false;
 			}
@@ -164,8 +164,8 @@ class smtp {
 	*/
 	function helo() {
 		if(is_resource($this->connection)
-				AND $this->send_data('HELO '.$this->helo)
-				AND substr(trim($error = $this->get_data()), 0, 3) === '250' ){
+				and $this->send_data('HELO '.$this->helo)
+				and substr(trim($error = $this->get_data()), 0, 3) === '250' ){
 
 			return true;
 
@@ -180,8 +180,8 @@ class smtp {
 	*/
 	function ehlo() {
 		if(is_resource($this->connection)
-				AND $this->send_data('EHLO '.$this->helo)
-				AND substr(trim($error = $this->get_data()), 0, 3) === '250' ){
+				and $this->send_data('EHLO '.$this->helo)
+				and substr(trim($error = $this->get_data()), 0, 3) === '250' ){
 
 			return true;
 
@@ -196,8 +196,8 @@ class smtp {
 	*/
 	function rset() {
 		if(is_resource($this->connection)
-				AND $this->send_data('RSET')
-				AND substr(trim($error = $this->get_data()), 0, 3) === '250' ){
+				and $this->send_data('RSET')
+				and substr(trim($error = $this->get_data()), 0, 3) === '250' ){
 
 			return true;
 
@@ -212,8 +212,8 @@ class smtp {
 	*/
 	function quit() {
 		if(is_resource($this->connection)
-				AND $this->send_data('QUIT')
-				AND substr(trim($error = $this->get_data()), 0, 3) === '221' ){
+				and $this->send_data('QUIT')
+				and substr(trim($error = $this->get_data()), 0, 3) === '221' ){
 
 			fclose($this->connection);
 			$this->status = SMTP_STATUS_NOT_CONNECTED;
@@ -230,12 +230,12 @@ class smtp {
 	*/
 	function auth() {
 		if(is_resource($this->connection)
-				AND $this->send_data('AUTH LOGIN')
-				AND substr(trim($error = $this->get_data()), 0, 3) === '334'
-				AND $this->send_data(base64_encode($this->user))			// Send username
-				AND substr(trim($error = $this->get_data()),0,3) === '334'
-				AND $this->send_data(base64_encode($this->pass))			// Send password
-				AND substr(trim($error = $this->get_data()),0,3) === '235' ){
+				and $this->send_data('AUTH LOGIN')
+				and substr(trim($error = $this->get_data()), 0, 3) === '334'
+				and $this->send_data(base64_encode($this->user))			// Send username
+				and substr(trim($error = $this->get_data()),0,3) === '334'
+				and $this->send_data(base64_encode($this->pass))			// Send password
+				and substr(trim($error = $this->get_data()),0,3) === '235' ){
 
 			$this->authenticated = true;
 			return true;
@@ -252,8 +252,8 @@ class smtp {
 	function mail($from) {
 
 		if($this->is_connected()
-			AND $this->send_data('MAIL FROM:<'.$from.'>')
-			AND substr(trim($this->get_data()), 0, 2) === '250' ){
+			and $this->send_data('MAIL FROM:<'.$from.'>')
+			and substr(trim($this->get_data()), 0, 2) === '250' ){
 
 			return true;
 
@@ -267,8 +267,8 @@ class smtp {
 	function rcpt($to) {
 
 		if($this->is_connected()
-			AND $this->send_data('RCPT TO:<'.$to.'>')
-			AND substr(trim($error = $this->get_data()), 0, 2) === '25' ){
+			and $this->send_data('RCPT TO:<'.$to.'>')
+			and substr(trim($error = $this->get_data()), 0, 2) === '25' ){
 
 			return true;
 
@@ -284,8 +284,8 @@ class smtp {
 	function data() {
 
 		if($this->is_connected()
-			AND $this->send_data('DATA')
-			AND substr(trim($error = $this->get_data()), 0, 3) === '354' ){
+			and $this->send_data('DATA')
+			and substr(trim($error = $this->get_data()), 0, 3) === '354' ){
 
 			return true;
 
@@ -301,7 +301,7 @@ class smtp {
 	*/
 	function is_connected() {
 
-		return (is_resource($this->connection) AND ($this->status === SMTP_STATUS_CONNECTED));
+		return (is_resource($this->connection) and ($this->status === SMTP_STATUS_CONNECTED));
 	}
 
 	/**
@@ -326,7 +326,7 @@ class smtp {
 		$loops  = 0;
 
 		if(is_resource($this->connection)){
-			while((strpos($Return, CRLF) === false OR substr($Line,3,1) !== ' ') AND $loops < 100){
+			while((strpos($Return, CRLF) === false OR substr($Line,3,1) !== ' ') and $loops < 100){
 				$Line    = fgets($this->connection, 512);
 				$Return .= $Line;
 				$loops++;

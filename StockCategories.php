@@ -70,7 +70,7 @@ if (isset($_POST['submit'])) {
 	} elseif (mb_strlen($_POST['CategoryDescription']) >20 or mb_strlen($_POST['CategoryDescription'])==0) {
 		$InputError = 1;
 		prnMsg(__('The Sales category description must be twenty characters or less long and cannot be zero'),'error');
-	} elseif ($_POST['StockType'] !='D' AND $_POST['StockType'] !='L' AND $_POST['StockType'] !='F' AND $_POST['StockType'] !='M') {
+	} elseif ($_POST['StockType'] !='D' and $_POST['StockType'] !='L' and $_POST['StockType'] !='F' and $_POST['StockType'] !='M') {
 		$InputError = 1;
 		prnMsg(__('The stock type selected must be one of') . ' "D" - ' . __('Dummy item') . ', "L" - ' . __('Labour stock item') . ', "F" - ' . __('Finished product') . ' ' . __('or') . ' "M" - ' . __('Raw Materials'),'error');
 	}

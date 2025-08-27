@@ -18,7 +18,7 @@ function userLogin($Name, $Password, $SysAdminEmail = '') {
 	global $PathPrefix;
 
 	if (!isset($_SESSION['AccessLevel']) OR $_SESSION['AccessLevel'] == '' OR
-		(isset($Name) AND $Name != '')) {
+		(isset($Name) and $Name != '')) {
 		/* if not logged in */
 
 		$_SESSION['AccessLevel'] = '';
@@ -246,7 +246,7 @@ function userLogin($Name, $Password, $SysAdminEmail = '') {
 			if (!isset($_SESSION['DB_Maintenance'])) {
 				return  UL_CONFIGERR;
 			} else {
-				if ($_SESSION['DB_Maintenance']==-1 AND !in_array(15, $_SESSION['AllowedPageSecurityTokens'])) {
+				if ($_SESSION['DB_Maintenance']==-1 and !in_array(15, $_SESSION['AllowedPageSecurityTokens'])) {
 					// the configuration setting has been set to -1 ==> Allow SysAdmin Access Only
 					// the user is NOT a SysAdmin
 					return  UL_MAINTENANCE;
@@ -258,7 +258,7 @@ function userLogin($Name, $Password, $SysAdminEmail = '') {
 			// after 5 login attempts, show failed login screen
 			if (!isset($_SESSION['AttemptsCounter'])) {
 				$_SESSION['AttemptsCounter'] = 0;
-			} elseif ($_SESSION['AttemptsCounter'] >= 5 AND isset($Name)) {
+			} elseif ($_SESSION['AttemptsCounter'] >= 5 and isset($Name)) {
 				/*User blocked from future accesses until sysadmin releases */
 				$SQL = "UPDATE www_users
 							SET blocked=1

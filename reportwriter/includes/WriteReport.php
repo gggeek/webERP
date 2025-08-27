@@ -571,9 +571,9 @@ function BuildSQL($Prefs) {
 	if ($Prefs['table6']) $strTable .= ' INNER JOIN '.$Prefs['table6']. ' ON '.$Prefs['table6criteria'];
 	// Build query string and execute
 	$sql = "SELECT ".$strField." FROM ".$strTable;
-	if ($strCrit AND $strDate) $sql .= ' WHERE '.$strDate.' AND '.$strCrit;
-	if (!$strCrit AND $strDate) $sql .= ' WHERE '.$strDate;
-	if ($strCrit AND !$strDate) $sql .= ' WHERE '.$strCrit;
+	if ($strCrit and $strDate) $sql .= ' WHERE '.$strDate.' AND '.$strCrit;
+	if (!$strCrit and $strDate) $sql .= ' WHERE '.$strDate;
+	if ($strCrit and !$strDate) $sql .= ' WHERE '.$strCrit;
 	if ($strSort) $sql .= ' ORDER BY '.$strSort;
 	$usrMsg['level'] = 'success';
 	$usrMsg['data'] = $sql;
@@ -615,7 +615,7 @@ function BuildDataArray($ReportID, $sql, $Prefs) {
 	while ($myrow = DB_fetch_row($Result)) {
 		// Check to see if a total row needs to be displayed
 		if (isset($GrpField)) { // we're checking for group totals, see if this group is complete
-			if ($myrow[$GrpField]<>$GrpWorking AND $GrpWorking<>false) { // it's a new group so print totals
+			if ($myrow[$GrpField]<>$GrpWorking and $GrpWorking<>false) { // it's a new group so print totals
 				$OutputArray[$RowCnt][0] = 'g:'.$GrpWorking;
 				foreach($Seq as $offset=>$TotalCtl) {
 					$OutputArray[$RowCnt][$offset+1] = $TotalCtl['grptotal'];

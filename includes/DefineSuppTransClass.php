@@ -102,7 +102,7 @@ class SuppTrans {
 								$GRNBatchNo,
 								$SupplierRef) {
 
-		if ($This_QuantityInv!=0 AND isset($This_QuantityInv)){
+		if ($This_QuantityInv!=0 and isset($This_QuantityInv)){
 			$this->GRNs[$GRNNo] = new GRNs($GRNNo,
 											$PODetailItem,
 											$ItemCode,
@@ -145,7 +145,7 @@ class SuppTrans {
 									$Hold,
 									$SupplierRef){
 
-		if ($This_QuantityInv!=0 AND isset($This_QuantityInv)){
+		if ($This_QuantityInv!=0 and isset($This_QuantityInv)){
 			$this->GRNs[$GRNNo]->Modify($PODetailItem,
 										$ItemCode,
 										$ItemDescription,
@@ -200,7 +200,7 @@ class SuppTrans {
 									$Narrative,
 									$Tag) {
 
-		if ($Amount!=0 AND isset($Amount)){
+		if ($Amount!=0 and isset($Amount)){
 			$this->GLCodes[$this->GLCodesCounter] = new GLCodes($this->GLCodesCounter,
 																$GLCode,
 																$GLActName,

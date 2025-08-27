@@ -55,7 +55,7 @@ if (isset($_POST['ResetPart'])) {
 	unset($SelectedStockItem);
 }
 
-if (isset($OrderNumber) AND $OrderNumber != '') {
+if (isset($OrderNumber) and $OrderNumber != '') {
 	if (!is_numeric($OrderNumber)) {
 		echo '<br /><b>' . __('The Order Number entered') . ' <u>' . __('MUST') . '</u> ' . __('be numeric') . '.</b><br />';
 		unset($OrderNumber);
@@ -75,10 +75,10 @@ if (isset($OrderNumber) AND $OrderNumber != '') {
 }
 
 if (isset($_POST['SearchParts'])) {
-	if (isset($_POST['Keywords']) AND isset($_POST['StockCode'])) {
+	if (isset($_POST['Keywords']) and isset($_POST['StockCode'])) {
 		echo '<div class="page_help_text">' . __('Stock description keywords have been used in preference to the Stock code extract entered') . '.</div>';
 	}
-	if (isset($_POST['StockCat']) AND $_POST['StockCat'] == 'All'){
+	if (isset($_POST['StockCat']) and $_POST['StockCat'] == 'All'){
 		$WhereStockCat = ' ';
 	} else {
 		$WhereStockCat = " AND stockmaster.categoryid='" . $_POST['StockCat'] . "'";
@@ -124,7 +124,7 @@ if (isset($_POST['SearchParts'])) {
 					stockmaster.units
 				ORDER BY stockmaster.stockid";
 
-	} elseif (!$_POST['StockCode'] AND !$_POST['Keywords']) {
+	} elseif (!$_POST['StockCode'] and !$_POST['Keywords']) {
 		$SQL = "SELECT stockmaster.stockid,
 					stockmaster.decimalplaces,
 					stockmaster.description,
@@ -386,7 +386,7 @@ else {
 	} elseif ($_POST['Status'] == 'Cancelled') {
 		$StatusCriteria = " AND purchorders.status='Cancelled' ";
 	}
-	if (isset($OrderNumber) AND $OrderNumber != '') {
+	if (isset($OrderNumber) and $OrderNumber != '') {
 		$SQL = "SELECT purchorders.orderno,
 						purchorders.realorderno,
 						suppliers.suppname,

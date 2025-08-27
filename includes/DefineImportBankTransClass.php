@@ -63,7 +63,7 @@ class BankTrans {
 	}
 
 	function Add_To_GLAnalysis($Amount, $Narrative, $GLCode, $GLAccountName, $Tag){
-		if (isset($GLCode) AND $Amount!=0){
+		if (isset($GLCode) and $Amount!=0){
 			$this->GLEntries[$this->GLItemID] = new GLAnalysis($Amount, $Narrative, $this->GLItemID, $GLCode, $GLAccountName, $Tag);
 			$this->GLItemID++;
 			$this->GLTotal += $Amount;

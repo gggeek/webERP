@@ -33,7 +33,7 @@ echo '</select>';
 echo '<br /><input type="submit" name="UpdateSalesAnalysis" value="' . __('Update Sales Analysis Costs') .'" /></div>';
 echo '</div></form>';
 
-if (isset($_POST['UpdateSalesAnalysis']) AND $_POST['PeriodNo']!=0){
+if (isset($_POST['UpdateSalesAnalysis']) and $_POST['PeriodNo']!=0){
 	$SQL = "SELECT stockmaster.stockid,
 			actualcost AS standardcost,
 			stockmaster.mbflag

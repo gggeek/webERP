@@ -78,7 +78,7 @@ function RetrieveReports() {
 		while ($Temp = DB_fetch_array($Result)) $FormList[] = $Temp;
 		foreach ($FormGroups as $index=>$value) {
 			$Group=explode(':',$index); // break into main group and form group array
-			if ($Group[0]==$key AND $FormList<>'') { // then it's a part of the group we're showing
+			if ($Group[0]==$key and $FormList<>'') { // then it's a part of the group we're showing
 				$WriteOnce = true;
 				foreach ($FormList as $Entry) {
 					if ($Entry['groupname']==$index) { // then it's part of this listing
@@ -312,7 +312,7 @@ function InsertSequence($SeqNum, $EntryType) {
 	if (!isset($_POST['ColumnBreak'])) $ColumnBreak = '0'; else $ColumnBreak = $_POST['ColumnBreak'];
 	if (!isset($_POST['Params'])) {
 		$Params = '0';
-	} elseif ($Type=='frm' AND $EntryType=='fieldlist') {
+	} elseif ($Type=='frm' and $EntryType=='fieldlist') {
 		$EntryIndex['index'] = $_POST['Params'];
 		$Params = serialize($EntryIndex);
 	} else {
@@ -352,7 +352,7 @@ function InsertFormSeq(&$Params, $Insert) {
 // This function creates a hole in the sequencing to allow inserting new form table field data
 	$SeqNum = $_POST['TblSeqNum'];
 	if (!$SeqNum) $SeqNum = count($Params['Seq'])+1; // set sequence to last entry if not entered
-	if (isset($Params['Seq'][$SeqNum-1]) AND $Insert=='insert') {
+	if (isset($Params['Seq'][$SeqNum-1]) and $Insert=='insert') {
 		// then the sequence number exists make a hole for this insert
 		for ($j=count($Params['Seq']); $j>=$SeqNum; $j--) {
 			$Params['Seq'][$j] = $Params['Seq'][$j-1]; // move the array element down one
@@ -376,7 +376,7 @@ function InsertFormSeq(&$Params, $Insert) {
 
 function ModFormTblEntry(&$Params) {
 	for ($i=1; $i<100; $i++) { // see if a button was pressed
-		if (isset($_POST['up'.$i.'_x']) AND $i<>1) { // sequence up[i] was pressed, swap it with the element before
+		if (isset($_POST['up'.$i.'_x']) and $i<>1) { // sequence up[i] was pressed, swap it with the element before
 			$Temp = $Params['Seq'][$i-1];
 			$Params['Seq'][$i-1] = $Params['Seq'][$i-2];
 			$Params['Seq'][$i-2] = $Temp;
@@ -385,7 +385,7 @@ function ModFormTblEntry(&$Params) {
 			$Params['Seq'][$i-2]['TblSeqNum'] = $i-1;
 			return true;
 		}
-		if (isset($_POST['dn'.$i.'_x']) AND $i<>count($Params['Seq'])) { // sequence dn[i] was pressed, swap it with the element after
+		if (isset($_POST['dn'.$i.'_x']) and $i<>count($Params['Seq'])) { // sequence dn[i] was pressed, swap it with the element after
 			$Temp = $Params['Seq'][$i-1];
 			$Params['Seq'][$i-1] = $Params['Seq'][$i];
 			$Params['Seq'][$i] = $Temp;
@@ -425,7 +425,7 @@ function ValidateField($ReportID, $FieldName, $Description) {
 	global $Type;
 	// This function checks the fieldname and field reference and validates that it is good.
 	// first check if a form (fieldname is not provided unless it's the form page break field)
-	if ($Type=='frm' AND $Description<>'TestField') { // then check for non-zero description unless a fieldname is present
+	if ($Type=='frm' and $Description<>'TestField') { // then check for non-zero description unless a fieldname is present
 		if (mb_strlen($Description)<1) return false; else return true;
 	}
 	// fetch the table values to build sql
@@ -573,12 +573,12 @@ function ExportReport($ReportID) {
 	$Result = DB_query($sql,'','',false,true);
 	$i=0;
 	while ($FieldRows = DB_fetch_assoc($Result)) {
-		if ($FieldRows['entrytype']<>'dateselect' AND $FieldRows['entrytype']<>'trunclong') {
+		if ($FieldRows['entrytype']<>'dateselect' and $FieldRows['entrytype']<>'trunclong') {
 			$CSVOutput .= "FieldDesc".$i.":'".DB_escape_string($FieldRows['displaydesc'])."'".$crlf;
 		}
 		$sql = 'FieldData'.$i.':';
 		foreach ($FieldRows as $key=>$value) {
-			if ($key<>'id' AND $key<>'reportid') $sql .= $key."='".DB_escape_string($value)."', ";
+			if ($key<>'id' and $key<>'reportid') $sql .= $key."='".DB_escape_string($value)."', ";
 		}
 		$sql = mb_substr($sql,0,-2).";"; // Strip the last comma and space and add a semicolon
 		$FieldData[$i] = $sql;

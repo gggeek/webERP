@@ -26,7 +26,7 @@
 		if (!isset($_SESSION['AccessLevel']) OR
 		           $_SESSION['AccessLevel'] == '') {
 			//  Login to default database = old clients.
-			if ($user != '' AND $password != '') {
+			if ($user != '' and $password != '') {
 				global  $api_DatabaseName;
 			    $rc = LoginAPI ($api_DatabaseName, $user, $password);
 				if ($rc[0] == UL_OK ) {

@@ -118,7 +118,7 @@ class Cart {
 							$ExRate=1,
 							$identifier=0){
 
-		if (isset($StockID) AND $StockID!="" AND $Qty>0 AND isset($Qty)){
+		if (isset($StockID) and $StockID!="" and $Qty>0 and isset($Qty)){
 
 			if ($Price<0){ /*madness check - use a credit note to give money away!*/
 				$Price=0;
