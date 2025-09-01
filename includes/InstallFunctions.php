@@ -282,6 +282,7 @@ function CreateTables($Path_To_Root) {
 }
 
 function UploadData($Demo, $AdminPassword, $AdminUser, $Email, $Language, $CoA, $CompanyName, $Path_To_Root, $DataBaseName) {
+	$Errors = 0;
 	if ($Demo != 'Yes') {
 		DB_IgnoreForeignKeys();
 		/* Create the admin user */
@@ -343,6 +344,7 @@ function UploadData($Demo, $AdminPassword, $AdminUser, $Email, $Language, $CoA, 
 		if (DB_error_no() == 0) {
 			echo '<div class="success">' . __('The admin user has been inserted.') . '</div>';
 		} else {
+			$Errors++;
 			echo '<div class="error">' . __('There was an error inserting the admin user') . ' - ' . DB_error_msg() . '</div>';
 		}
 		flush();
@@ -355,16 +357,19 @@ function UploadData($Demo, $AdminPassword, $AdminUser, $Email, $Language, $CoA, 
 		for ($i = 0;$i < $ScriptFileEntries;$i++) {
 
 			$COAScriptFile[$i] = trim($COAScriptFile[$i]);
-			//ignore lines that start with -- or USE or /*
+			// ignore lines that start with -- or USE or /*
+			/// @todo use a regexp to account for initial spaces
 			if (mb_substr($COAScriptFile[$i], 0, 2) != '--' and mb_strstr($COAScriptFile[$i], '/*') == false and mb_strlen($COAScriptFile[$i]) > 1) {
 
 				$SQL.= ' ' . $COAScriptFile[$i];
 
-				//check if this line kicks off a function definition - pg chokes otherwise
+				// check if this line kicks off a function definition - pg chokes otherwise
+				/// @todo use a regexp
 				if (mb_substr($COAScriptFile[$i], 0, 15) == 'CREATE FUNCTION') {
 					$InAFunction = true;
 				}
-				//check if this line completes a function definition - pg chokes otherwise
+				// check if this line completes a function definition - pg chokes otherwise
+				/// @todo use a regexp
 				if (mb_substr($COAScriptFile[$i], 0, 8) == 'LANGUAGE') {
 					$InAFunction = false;
 				}
@@ -375,6 +380,7 @@ function UploadData($Demo, $AdminPassword, $AdminUser, $Email, $Language, $CoA, 
 						DB_IgnoreForeignKeys();
 						$Result = DB_query($SQL, '', '', false, false);
 						if (DB_error_no($Result) != 0) {
+							$Errors++;
 							echo '<div class="error">' . __('Your chosen chart of accounts could not be uploaded') . '</div>';
 						}
 					}
@@ -392,6 +398,7 @@ function UploadData($Demo, $AdminPassword, $AdminUser, $Email, $Language, $CoA, 
 		if (DB_error_no() == 0) {
 			echo '<div class="success">' . __('The admin user has been given permissions on all GL accounts.') . '</div>';
 		} else {
+			$Errors++;
 			echo '<div class="error">' . __('There was an error with creating permission for the admin user') . ' - ' . DB_error_msg() . '</div>';
 		}
 		flush();
@@ -401,6 +408,7 @@ function UploadData($Demo, $AdminPassword, $AdminUser, $Email, $Language, $CoA, 
 		if (DB_error_no() == 0) {
 			echo '<div class="success">' . __('The default GL tag has been inserted.') . '</div>';
 		} else {
+			$Errors++;
 			echo '<div class="error">' . __('There was an error inserting the default GL tag') . ' - ' . DB_error_msg() . '</div>';
 		}
 		flush();
@@ -413,6 +421,7 @@ function UploadData($Demo, $AdminPassword, $AdminUser, $Email, $Language, $CoA, 
 			$DBErrors += DB_error_no($Result);
 		}
 		if ($DBErrors > 0) {
+			$Errors++;
 			echo '<div class="error">' . __('Database tables could not be populated') . '</div>';
 		} else {
 			echo '<div class="success">' . __('All database tables have been populated') . '</div>';
@@ -426,6 +435,7 @@ function UploadData($Demo, $AdminPassword, $AdminUser, $Email, $Language, $CoA, 
 		if (DB_error_no() == 0) {
 			echo '<div class="success">' . __('The database update revision has been inserted.') . '</div>';
 		} else {
+			$Errors++;
 			echo '<div class="error">' . __('There was an error inserting the DB revision number') . ' - ' . DB_error_msg() . '</div>';
 		}
 		flush();
@@ -462,6 +472,7 @@ function UploadData($Demo, $AdminPassword, $AdminUser, $Email, $Language, $CoA, 
 		if (DB_error_no() == 0) {
 			echo '<div class="success">' . __('The company record has been inserted.') . '</div>';
 		} else {
+			$Errors++;
 			echo '<div class="error">' . __('There was an error inserting the DB revision number') . ' - ' . DB_error_msg() . '</div>';
 		}
 		flush();
@@ -471,16 +482,22 @@ function UploadData($Demo, $AdminPassword, $AdminUser, $Email, $Language, $CoA, 
 		echo '<div class="success">' . __('Populating the database with demo data.') . '</div>';
 		flush();
 
-		$Result = PopulateSQLDataBySQL($Path_To_Root. '/install/sql/demo.sql');
+		$Errors = (int)PopulateSQLDataBySQL($Path_To_Root. '/install/sql/demo.sql');
 
 		$SQL = "INSERT INTO `config` (`confname`, `confvalue`) VALUES ('FirstLogIn','0')";
-		$Result = $Result && DB_query($SQL, '', '', false, false);
+		$Result = DB_query($SQL, '', '', false, false);
 		/// @todo echo error (warning?) if failure
+		if (DB_error_no() == 0) {
+			//echo '<div class="success">' . __('...') . '</div>';
+		} else {
+			$Errors++;
+			//echo '<div class="error">' . __('...') . '</div>';
+		}
 
 		/// @todo there is no /companies/default folder atm...
 		$CompanyDir = $Path_To_Root . '/companies/' . $DataBaseName;
 		foreach (glob($Path_To_Root . '/companies/default/part_pics/*.jp*') as $JpegFile) {
-			$Result = $Result && copy("../companies/default/part_pics/" . basename($JpegFile), $CompanyDir . '/part_pics/' . basename($JpegFile));
+			copy("../companies/default/part_pics/" . basename($JpegFile), $CompanyDir . '/part_pics/' . basename($JpegFile));
 		}
 
 		DB_IgnoreForeignKeys();
@@ -543,6 +560,7 @@ function UploadData($Demo, $AdminPassword, $AdminUser, $Email, $Language, $CoA, 
 		if (DB_error_no() == 0) {
 			echo '<div class="success">' . __('The admin user has been inserted.') . '</div>';
 		} else {
+			$Errors++;
 			echo '<div class="error">' . __('There was an error inserting the admin user') . ' - ' . DB_error_msg() . '</div>';
 		}
 		flush();
@@ -551,8 +569,7 @@ function UploadData($Demo, $AdminPassword, $AdminUser, $Email, $Language, $CoA, 
 		echo '<div class="success">' . __('Database now contains the demo data.') . '</div>';
 	}
 
-	/// @todo do not always return true
-	return true;
+	return ($Errors == 0);
 }
 
 function HighestFileName($Path_To_Root) {
