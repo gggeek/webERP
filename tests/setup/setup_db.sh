@@ -119,7 +119,7 @@ else
 
 	case "$DB_TYPE" in
 		mysql)
-			docker run --rm --detach --name mysql -p "${DB_PORT}:3306" -e MYSQL_ROOT_PASSWORD=root \
+			docker run --rm --detach --name mysql -p "${DB_PORT}:3306" -e "MYSQL_ROOT_PASSWORD=$DB_PASSWORD" \
 				-v "$BASE_DIR/tests/setup/config/mariadb/test.cnf:/etc/mysql/conf.d/test.cnf" \
 				"${DB_TYPE}:${DB_VERSION}"
 			# wait up to 10 secs for the db to be started up
@@ -127,7 +127,7 @@ else
 			COUNT=0
 			ALIVE=no
 			set +e
-			while [ "$COUNT" -lt 10 ]; do
+			while [ "$COUNT" -lt 60 ]; do
 				sleep 1
 				docker exec -ti mysql mysql -h127.0.0.1 -uroot -p"$DB_PASSWORD" -e 'show databases' >/dev/null 2>/dev/null
 				if [ $? -eq 0 ]; then
@@ -144,16 +144,16 @@ else
 			fi
 		;;
 		mariadb)
-			docker run --rm --detach --name mariadb -p "${DB_PORT}:3306" -e MARIADB_ROOT_PASSWORD=root \
+			docker run --rm --detach --name mariadb -p "${DB_PORT}:3306" -e "MARIADB_ROOT_PASSWORD=$DB_PASSWORD" -e "MYSQL_ROOT_PASSWORD=$DB_PASSWORD"\
 				-v "$BASE_DIR/tests/setup/config/mariadb/test.cnf:/etc/mysql/conf.d/test.cnf" \
 				"${DB_TYPE}:${DB_VERSION}"
 			# wait up to 10 secs for the db to be started up
 			COUNT=0
 			ALIVE=no
 			set +e
-			while [ "$COUNT" -lt 10 ]; do
+			while [ "$COUNT" -lt 60 ]; do
 				sleep 1
-				docker exec -ti mysql mysql -h127.0.0.1 -uroot -p"$DB_PASSWORD" -e 'show databases' >/dev/null 2>/dev/null
+				docker exec -ti mariadb mysql -h127.0.0.1 -uroot -p"$DB_PASSWORD" -e 'show databases' >/dev/null 2>/dev/null
 				if [ $? -eq 0 ]; then
 					ALIVE=yes
 					break
@@ -161,7 +161,7 @@ else
 				echo "Waiting for mariadb..."
 				COUNT=$((COUNT+1))
 			done
-			set-e
+			set -e
 			if [ "$ALIVE" != yes ]; then
 				echo "Mariadb (in container) did not start up in time"
 				exit 1
