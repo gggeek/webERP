@@ -13,27 +13,28 @@ jobs:
                 include:
                     # @see https://github.com/actions/runner-images
                     # @todo run some tests on 'windows-latest'
+                    # NB: the order of options is picked to make the github page display nicer (test naming in left col)
                     - php: '8.4'
-                      operating-system: ubuntu-24.04
-                      # Leaving these empty will result in the mysql service on the host to be used.
+                      # Using 'native' version will result in the mysql service on the host to be used.
                       # For Ubuntu 22.04 and 24.04 runners, that is mysql 8.0.43
-                      dbtype: ''
-                      dbversion: ''
-                      dbport: ''
-                    - php: '8.3'
+                      dbtype: mysql
+                      dbversion: native
                       operating-system: ubuntu-24.04
+                      dbport: 3306
+                    - php: '8.3'
                       dbtype: mariadb
                       dbversion: 'latest'
+                      operating-system: ubuntu-24.04
                       dbport: 3306
                     - php: '8.2'
-                      operating-system: ubuntu-22.04
                       dbtype: mysql
                       dbversion: '5.5'
+                      operating-system: ubuntu-22.04
                       dbport: 3307
                     - php: '8.1'
-                      operating-system: ubuntu-22.04
                       dbtype: mariadb
                       dbversion: '5.5'
+                      operating-system: ubuntu-22.04
                       dbport: 3307
 
         # NB: we do not run docker containers using the native `services` tag because we have to mount one or more files
@@ -54,27 +55,9 @@ jobs:
               uses: actions/checkout@v5
 
             - name: Set up the Database
-              # @see https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md#mysql
-              # @see https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md#mysql
               run: |
-                if [ -z "${{ matrix.dbtype }}" ]; then
-                    chmod 755 ./tests/setup/setup_db.sh
-                    ./tests/setup/setup_db.sh "mysql" "native"
-                else
-                    # @todo move this to setup_db.sh
-                    case "${{ matrix.dbtype }}" in
-                        mysql)
-                            docker run --rm --detach --name mysql -p '${{ matrix.dbport }}:3306' -e MYSQL_ROOT_PASSWORD=root \
-                                -v '${{ github.workspace }}/tests/setup/config/mariadb/test.cnf:/etc/mysql/conf.d/test.cnf' \
-                                ${{ matrix.dbtype }}:${{ matrix.dbversion }}
-                        ;;
-                        mariadb)
-                            docker run --rm --detach --name mariadb -p '${{ matrix.dbport }}:3306' -e MARIADB_ROOT_PASSWORD=root \
-                            -v '${{ github.workspace }}/tests/setup/config/mariadb/test.cnf:/etc/mysql/conf.d/test.cnf' \
-                            ${{ matrix.dbtype }}:${{ matrix.dbversion }}
-                        ;;
-                    esac
-                fi
+                chmod 755 ./tests/setup/setup_db.sh
+                ./tests/setup/setup_db.sh -t "${{ matrix.dbtype }}" -v "${{ matrix.dbversion }}" -P "${{ matrix.dbport }}"
 
             - name: Stop php-fpm if running
               run: |
