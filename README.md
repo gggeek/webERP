@@ -27,10 +27,13 @@ be downloaded from [SourceForge](http://sourceforge.net/projects/web-erp/files/l
 ## Requirements
 - A web server - webERP has been tested on Apache, Nginx, Lighthttpd, and Hiawatha
 - PHP version 8.1 and above
-- MySQL version 4.3 and above, or MariaDB version 5.1 and above
+- MySQL version 5.7.5 and above, or MariaDB version 5.5 and above (recent, supported versions recommended)
 - A web browser with HTML5 compatibility
 
-Further information about hardware and software requirements is available in the [documentation](https://www.weberp.org/Documentation.html).
+Further information about hardware and software requirements is available in the [documentation](https://www.weberp.org/Documentation.html)
+on the website.
+
+_NB:_ please note that the website documentation is for webERP version 4. For version 5, look at the [included install guide](doc/INSTALL.md)
 
 ## Installation
 
@@ -43,7 +46,7 @@ Further information about hardware and software requirements is available in the
 4. Create an empty database, taking note of your username, password, hostname, and database name.
    NB: the database user must have sufficient permissions to create triggers and functions.
 5. In your browser, enter the address to your site, such as: www.example.com (or if you uploaded it into another subdirectory
-   such as foldername use www.example.com/foldername)
+   such as _foldername_ use www.example.com/foldername)
 6. Follow the instructions that appear in your browser for installation.
 
 ### Upgrading
@@ -60,14 +63,20 @@ Further information about installation and upgrading is available in the [docume
 
 ## Documentation
 
-The webERP documentation is included in every installation, and can be accessed by clicking on the `Manual` button on the
+The webERP user documentation is included in every installation, and can be accessed by clicking on the `Manual` button on the
 top menu bar. The documentation is also available within the [live demo.](https://www.weberp.org/demo/ManualContents.php)
+
+The developer's documentation is also included in every installation, in markdown format. It is found in `./doc/developers/`.
+It can be browsed online at https://github.com/timschofield/webERP/tree/master/doc/developers
 
 ## Support
 
 Free support is available 24/7, provided by our enthusiastic community of actual webERP users, integrators, and the developers themselves.
+
 The primary means of support is through the forum at: https://github.com/timschofield/webERP/discussions
+
 You may also join the mailing list at: https://sourceforge.net/projects/web-erp/lists/web-erp-users
+
 The answers to most questions can be found by searching the forums, or the mailing list archives at: https://sourceforge.net/p/web-erp/mailman/
 
 ## Contribute to the webERP project
@@ -77,9 +86,11 @@ has done such training materials for your own team this will no doubt be useful 
 you could contribute. Contributions in the form of bug reports or other feedback through the forums or mailing lists above
 also help to improve the project.
 
-Guidelines for contributing code can be found at: https://www.weberp.org/Development.html
+General guidelines for contributing code can be found at: https://www.weberp.org/Development.html
 
-Developers interested in contributing should read this document carefully and follow the guidelines therein. Standards and
+The docs at https://github.com/timschofield/webERP/tree/master/doc/developers include a Code of Conduct as well as
+Coding Standards and a detailed Development Workflow.
+Developers interested in contributing should read those document carefully and follow the guidelines therein. Standards and
 conventions used in the code are rigorously applied in the interests of consistency and readability.
 
 ## Legal

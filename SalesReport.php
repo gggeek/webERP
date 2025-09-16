@@ -8,10 +8,6 @@ This creative work is under the CC BY-NC-SA, last version. 2016-12-18.
 This script is "mirror-symmetric" to script PurchasesReport.php.
 */
 
-// BEGIN: Functions division ===================================================
-// END: Functions division =====================================================
-
-// BEGIN: Procedure division ===================================================
 require(__DIR__ . '/includes/session.php');
 
 use Dompdf\Dompdf;
@@ -60,7 +56,7 @@ if (isset($_POST['PrintPDF']) or isset($_POST['View'])) {
 				<body>
 				<div class="centre" id="ReportHeader">
 					' . $_SESSION['CompanyRecord']['coyname'] . '<br />
-					' . __('Reorder Level Report') . '<br />
+					' . __('Sales Report') . '<br />
 					' . __('Printed') . ': ' . Date($_SESSION['DefaultDateFormat']) . '<br />
 					' . __('Date Range') . ' - ' . $_POST['PeriodFrom'] . ' to ' . $_POST['PeriodTo'] . '<br />
 				</div>
